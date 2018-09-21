@@ -1,0 +1,15 @@
+{
+    "presets": [
+        "env",
+        "react",
+        "stage-2"
+    ],
+    "plugins": [
+        [
+            "transform-react-jsx",
+            {
+                "pragma": "React.createElement" // 默认 pragma 为 React.createElement,JSX转义后注入的方法
+            }
+        ],
+    ]
+}
