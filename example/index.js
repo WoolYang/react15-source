@@ -14,16 +14,16 @@ class Test extends React.Component {
     }
 
     render() {
-       // const names = ['Alice', 'Emily', 'Kate'];
+        const names = ['Alice', 'Emily', 'Kate=:'];
 
         return (
             <div className='test' style={{ background: this.state.color, height: '100px', width: '100px' }}>
                 Hello World!
-{/*                 <div>
+                 <div>
                     {
                         names.map(item => <div key={item} >{item}</div>)
                     }
-                </div> */}
+                </div>
             </div>
         )
     }
