@@ -8,9 +8,9 @@
 
 'use strict';
 
-var _prodInvariant = require('./reactProdInvariant');
+//var _prodInvariant = require('./reactProdInvariant');
 
-var invariant = require('fbjs/lib/invariant');
+//var invariant = require('fbjs/lib/invariant');
 
 var genericComponentClass = null;
 var textComponentClass = null;
@@ -35,7 +35,7 @@ var ReactHostComponentInjection = {
  * @return {function} The internal class constructor function.
  */
 function createInternalComponent(element) {
-  !genericComponentClass ? process.env.NODE_ENV !== 'production' ? invariant(false, 'There is no registered component for the tag %s', element.type) : _prodInvariant('111', element.type) : void 0;
+  //!genericComponentClass ? process.env.NODE_ENV !== 'production' ? invariant(false, 'There is no registered component for the tag %s', element.type) : _prodInvariant('111', element.type) : void 0;
   return new genericComponentClass(element);
 }
 
