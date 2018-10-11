@@ -1,7 +1,7 @@
 {
   "name": "react-like",
   "version": "0.0.0",
-  "description": "边造轮子边学习",
+  "description": "react15.6源码研究",
   "main": "",
   "scripts": {
     "dev": "webpack-dev-server --config webpack.config.dev.js "
