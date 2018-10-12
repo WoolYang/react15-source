@@ -17,7 +17,6 @@
  */
 
 function escape(key) {
-  debugger
   var escapeRegex = /[=:]/g;
   var escaperLookup = {
     '=': '=0',

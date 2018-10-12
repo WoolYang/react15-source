@@ -7,11 +7,11 @@
  */
 'use strict';
 
-var _prodInvariant = require('./reactProdInvariant');
+//var _prodInvariant = require('./reactProdInvariant');
 
-var ReactElement = require('./ReactElement');
+//var ReactElement = require('./ReactElement');
 
-var invariant = require('fbjs/lib/invariant');
+//var invariant = require('fbjs/lib/invariant');
 
 /**
  * Returns the first child in a collection of children and verifies that there
@@ -28,7 +28,7 @@ var invariant = require('fbjs/lib/invariant');
  * structure.
  */
 function onlyChild(children) {
-  !ReactElement.isValidElement(children) ? process.env.NODE_ENV !== 'production' ? invariant(false, 'React.Children.only expected to receive a single React element child.') : _prodInvariant('143') : void 0;
+ // !ReactElement.isValidElement(children) ? process.env.NODE_ENV !== 'production' ? invariant(false, 'React.Children.only expected to receive a single React element child.') : _prodInvariant('143') : void 0;
   return children;
 }
 

@@ -8,7 +8,7 @@
 
 'use strict';
 
-var _assign = require('object-assign');
+//var _assign = require('object-assign');
 
 var ReactBaseClasses = require('./ReactBaseClasses');
 var ReactChildren = require('./ReactChildren');
@@ -17,7 +17,7 @@ var ReactElement = require('./ReactElement');
 var ReactPropTypes = require('./ReactPropTypes');
 var ReactVersion = require('./ReactVersion');
 
-var createReactClass = require('./createClass');
+//var createReactClass = require('./createClass');
 var onlyChild = require('./onlyChild');
 
 var createElement = ReactElement.createElement;
@@ -51,7 +51,7 @@ var React = {
   // Classic
 
   PropTypes: ReactPropTypes,
-  createClass: createReactClass,
+  //createClass: createReactClass,
   createFactory: createFactory,
  // createMixin: createMixin,
 
