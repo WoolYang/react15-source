@@ -8,8 +8,7 @@
 
 'use strict';
 
-var _prodInvariant = require('./reactProdInvariant'),
-    _assign = require('object-assign');
+var _assign = require('object-assign');
 
 var CallbackQueue = require('./CallbackQueue');
 var PooledClass = require('./PooledClass');
@@ -26,10 +25,6 @@ var asapEnqueued = false;
 
 var batchingStrategy = null;
 
-/* function ensureInjected() {
-  !(ReactUpdates.ReactReconcileTransaction && batchingStrategy) ? process.env.NODE_ENV !== 'production' ? invariant(false, 'ReactUpdates: must inject a reconcile transaction class and batching strategy') : _prodInvariant('123') : void 0;
-}
- */
 var NESTED_UPDATES = {
   initialize: function () {
     this.dirtyComponentsLength = dirtyComponents.length;

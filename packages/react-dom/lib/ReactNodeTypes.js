@@ -9,11 +9,7 @@
 
 'use strict';
 
-var _prodInvariant = require('./reactProdInvariant');
-
 var React = require('../../react/lib/React');
-
-var invariant = require('fbjs/lib/invariant');
 
 var ReactNodeTypes = {
   HOST: 0,
@@ -30,7 +26,6 @@ var ReactNodeTypes = {
         return ReactNodeTypes.HOST;
       }
     }
-    !false ? process.env.NODE_ENV !== 'production' ? invariant(false, 'Unexpected node: %s', node) : _prodInvariant('26', node) : void 0;
   }
 };
 
