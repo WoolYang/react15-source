@@ -13,7 +13,7 @@
 var    _assign = require('object-assign');
 
 var AutoFocusUtils = require('./AutoFocusUtils');
-var CSSPropertyOperations = require('./CSSPropertyOperations');
+var CSSPropertyOperations = require('./shared/CSSPropertyOperations');
 var DOMLazyTree = require('./utils/DOMLazyTree');
 var DOMNamespaces = require('./DOMNamespaces');
 var DOMProperty = require('./DOMProperty');

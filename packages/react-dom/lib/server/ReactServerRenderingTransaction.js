@@ -10,9 +10,8 @@
 
 var _assign = require('object-assign');
 
-var PooledClass = require('../PooledClass');
+var PooledClass = require('../utils/PooledClass');
 var Transaction = require('../Transaction');
-var ReactInstrumentation = require('../ReactInstrumentation');
 var ReactServerUpdateQueue = require('./ReactServerUpdateQueue');
 
 /**

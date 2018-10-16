@@ -9,9 +9,6 @@
 'use strict';
 
 var ReactRef = require('./ReactRef');
-var ReactInstrumentation = require('./ReactInstrumentation');
-
-var warning = require('fbjs/lib/warning');
 
 /**
  * Helper to call ReactRef.attachRefs with this composite component, split out

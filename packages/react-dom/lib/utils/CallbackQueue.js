@@ -11,7 +11,7 @@
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var PooledClass = require('../PooledClass');
+var PooledClass = require('./PooledClass');
 
 /**
  * A specialized pseudo-event module to help keep track of components waiting to

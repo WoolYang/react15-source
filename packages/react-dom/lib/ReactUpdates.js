@@ -11,7 +11,7 @@
 var _assign = require('object-assign');
 
 var CallbackQueue = require('./utils/CallbackQueue');
-var PooledClass = require('./PooledClass');
+var PooledClass = require('./utils/PooledClass');
 var ReactFeatureFlags = require('./utils/ReactFeatureFlags');
 var ReactReconciler = require('./ReactReconciler');
 var Transaction = require('./Transaction');

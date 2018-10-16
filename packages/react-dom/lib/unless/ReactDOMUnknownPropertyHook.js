@@ -8,7 +8,7 @@
 
 'use strict';
 
-var DOMProperty = require('./DOMProperty');
+var DOMProperty = require('../DOMProperty');
 var EventPluginRegistry = require('./EventPluginRegistry');
 var ReactComponentTreeHook = require('../../react/lib/ReactComponentTreeHook');
 

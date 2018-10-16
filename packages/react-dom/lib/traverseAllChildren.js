@@ -8,10 +8,10 @@
 
 'use strict';
 
-var REACT_ELEMENT_TYPE = require('./ReactElementSymbol');
+var REACT_ELEMENT_TYPE = require('./utils/ReactElementSymbol');
 
-var getIteratorFn = require('./getIteratorFn');
-var KeyEscapeUtils = require('./KeyEscapeUtils');
+var getIteratorFn = require('./utils/getIteratorFn');
+var KeyEscapeUtils = require('./utils/KeyEscapeUtils');
 
 var SEPARATOR = '.';
 var SUBSEPARATOR = ':';

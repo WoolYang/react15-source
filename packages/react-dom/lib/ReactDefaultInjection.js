@@ -8,7 +8,7 @@
 
 'use strict';
 
-var ARIADOMPropertyConfig = require('./ARIADOMPropertyConfig');
+var ARIADOMPropertyConfig = require('./shared/ARIADOMPropertyConfig');
 var BeforeInputEventPlugin = require('./eventPlugins/BeforeInputEventPlugin');
 var ChangeEventPlugin = require('./eventPlugins/ChangeEventPlugin');
 var DefaultEventPluginOrder = require('./eventPlugins/DefaultEventPluginOrder');

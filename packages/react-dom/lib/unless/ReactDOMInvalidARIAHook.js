@@ -8,7 +8,7 @@
 
 'use strict';
 
-var DOMProperty = require('./DOMProperty');
+var DOMProperty = require('../DOMProperty');
 var ReactComponentTreeHook = require('../../react/lib/ReactComponentTreeHook');
 
 var warning = require('fbjs/lib/warning');

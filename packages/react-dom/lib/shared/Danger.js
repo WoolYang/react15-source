@@ -8,8 +8,7 @@
 
 'use strict';
 
-var DOMLazyTree = require('./utils/DOMLazyTree');
-var ExecutionEnvironment = require('fbjs/lib/ExecutionEnvironment');
+var DOMLazyTree = require('../utils/DOMLazyTree');
 
 var createNodesFromMarkup = require('fbjs/lib/createNodesFromMarkup');
 var emptyFunction = require('fbjs/lib/emptyFunction');

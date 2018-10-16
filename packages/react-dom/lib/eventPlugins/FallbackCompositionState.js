@@ -10,7 +10,7 @@
 
 var _assign = require('object-assign');
 
-var PooledClass = require('../PooledClass');
+var PooledClass = require('../utils/PooledClass');
 
 var getTextContentAccessor = require('../utils/getTextContentAccessor');
 
