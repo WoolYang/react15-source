@@ -11,8 +11,8 @@
 var EventPluginHub = require('./EventPluginHub');
 var EventPluginUtils = require('./EventPluginUtils');
 
-var accumulateInto = require('../accumulateInto');
-var forEachAccumulated = require('../forEachAccumulated');
+var accumulateInto = require('../utils/accumulateInto');
+var forEachAccumulated = require('../utils/forEachAccumulated');
 
 var getListener = EventPluginHub.getListener;
 

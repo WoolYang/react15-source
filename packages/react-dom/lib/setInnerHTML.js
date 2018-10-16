@@ -14,7 +14,7 @@ var DOMNamespaces = require('./DOMNamespaces');
 var WHITESPACE_TEST = /^[ \r\n\t\f]/;
 var NONVISIBLE_TEST = /<(!--|link|noscript|meta|script|style)[ \r\n\t\f\/>]/;
 
-var createMicrosoftUnsafeLocalFunction = require('./createMicrosoftUnsafeLocalFunction');
+var createMicrosoftUnsafeLocalFunction = require('./utils/createMicrosoftUnsafeLocalFunction');
 
 // SVG temp container for IE lacking innerHTML
 var reusableSVGContainer;

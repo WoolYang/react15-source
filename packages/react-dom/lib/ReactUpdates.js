@@ -10,9 +10,9 @@
 
 var _assign = require('object-assign');
 
-var CallbackQueue = require('./CallbackQueue');
+var CallbackQueue = require('./utils/CallbackQueue');
 var PooledClass = require('./PooledClass');
-var ReactFeatureFlags = require('./ReactFeatureFlags');
+var ReactFeatureFlags = require('./utils/ReactFeatureFlags');
 var ReactReconciler = require('./ReactReconciler');
 var Transaction = require('./Transaction');
 

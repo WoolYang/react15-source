@@ -8,7 +8,7 @@
 
 'use strict';
 
-var ReactErrorUtils = require('../ReactErrorUtils');
+var ReactErrorUtils = require('../utils/ReactErrorUtils');
 
 /**
  * Injected dependencies:

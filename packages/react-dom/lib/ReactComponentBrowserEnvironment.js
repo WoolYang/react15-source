@@ -8,7 +8,7 @@
 
 'use strict';
 
-var DOMChildrenOperations = require('./DOMChildrenOperations');
+var DOMChildrenOperations = require('./utils/DOMChildrenOperations');
 var ReactDOMIDOperations = require('./ReactDOMIDOperations');
 
 /**

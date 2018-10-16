@@ -10,7 +10,7 @@
 
 var _assign = require('object-assign');
 
-var CallbackQueue = require('./CallbackQueue');
+var CallbackQueue = require('./utils/CallbackQueue');
 var PooledClass = require('./PooledClass');
 var ReactBrowserEventEmitter = require('./ReactBrowserEventEmitter');
 var ReactInputSelection = require('./ReactInputSelection');

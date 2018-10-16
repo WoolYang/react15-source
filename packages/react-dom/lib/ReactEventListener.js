@@ -16,7 +16,7 @@ var PooledClass = require('./PooledClass');
 var ReactDOMComponentTree = require('./ReactDOMComponentTree');
 var ReactUpdates = require('./ReactUpdates');
 
-var getEventTarget = require('./getEventTarget');
+var getEventTarget = require('./utils/getEventTarget');
 var getUnboundedScrollPosition = require('fbjs/lib/getUnboundedScrollPosition');
 
 /**

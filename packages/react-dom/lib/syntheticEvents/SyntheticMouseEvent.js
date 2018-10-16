@@ -11,7 +11,7 @@
 var SyntheticUIEvent = require('./SyntheticUIEvent');
 var ViewportMetrics = require('../ViewportMetrics');
 
-var getEventModifierState = require('../getEventModifierState');
+var getEventModifierState = require('../utils/getEventModifierState');
 
 /**
  * @interface MouseEvent

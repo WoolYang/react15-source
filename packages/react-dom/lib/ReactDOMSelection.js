@@ -10,8 +10,8 @@
 
 var ExecutionEnvironment = require('fbjs/lib/ExecutionEnvironment');
 
-var getNodeForCharacterOffset = require('./getNodeForCharacterOffset');
-var getTextContentAccessor = require('./getTextContentAccessor');
+var getNodeForCharacterOffset = require('./utils/getNodeForCharacterOffset');
+var getTextContentAccessor = require('./utils/getTextContentAccessor');
 
 /**
  * While `isCollapsed` is available on the Selection object and `collapsed`

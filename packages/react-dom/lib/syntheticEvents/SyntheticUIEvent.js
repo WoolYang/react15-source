@@ -10,7 +10,7 @@
 
 var SyntheticEvent = require('../event/SyntheticEvent');
 
-var getEventTarget = require('../getEventTarget');
+var getEventTarget = require('../utils/getEventTarget');
 
 /**
  * @interface UIEvent

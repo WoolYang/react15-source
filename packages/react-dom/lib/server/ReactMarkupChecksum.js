@@ -8,7 +8,7 @@
 
 'use strict';
 
-var adler32 = require('../adler32');
+var adler32 = require('../utils/adler32');
 
 var TAG_END = /\/?>/;
 var COMMENT_START = /^<\!\-\-/;

@@ -8,11 +8,11 @@
 
 'use strict';
 
-var DOMNamespaces = require('./DOMNamespaces');
-var setInnerHTML = require('./setInnerHTML');
+var DOMNamespaces = require('../DOMNamespaces');
+var setInnerHTML = require('../setInnerHTML');
 
 var createMicrosoftUnsafeLocalFunction = require('./createMicrosoftUnsafeLocalFunction');
-var setTextContent = require('./setTextContent');
+var setTextContent = require('../setTextContent');
 
 var ELEMENT_NODE_TYPE = 1;
 var DOCUMENT_FRAGMENT_NODE_TYPE = 11;

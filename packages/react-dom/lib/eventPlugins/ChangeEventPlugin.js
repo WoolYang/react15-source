@@ -16,9 +16,9 @@ var ReactUpdates = require('../ReactUpdates');
 var SyntheticEvent = require('../event/SyntheticEvent');
 
 var inputValueTracking = require('../inputValueTracking');
-var getEventTarget = require('../getEventTarget');
+var getEventTarget = require('../utils/getEventTarget');
 var isEventSupported = require('../isEventSupported');
-var isTextInputElement = require('../isTextInputElement');
+var isTextInputElement = require('../utils/isTextInputElement');
 
 var eventTypes = {
   change: {

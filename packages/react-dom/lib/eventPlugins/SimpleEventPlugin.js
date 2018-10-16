@@ -25,7 +25,7 @@ var SyntheticUIEvent = require('../syntheticEvents/SyntheticUIEvent');
 var SyntheticWheelEvent = require('../syntheticEvents/SyntheticWheelEvent');
 
 var emptyFunction = require('fbjs/lib/emptyFunction');
-var getEventCharCode = require('../getEventCharCode');
+var getEventCharCode = require('../utils/getEventCharCode');
 
 /**
  * Turns

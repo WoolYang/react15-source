@@ -9,13 +9,13 @@
 'use strict';
 
 var DOMLazyTree = require('./DOMLazyTree');
-var Danger = require('./Danger');
-var ReactDOMComponentTree = require('./ReactDOMComponentTree');
-var ReactInstrumentation = require('./ReactInstrumentation');
+var Danger = require('../Danger');
+var ReactDOMComponentTree = require('../ReactDOMComponentTree');
+var ReactInstrumentation = require('../ReactInstrumentation');
 
 var createMicrosoftUnsafeLocalFunction = require('./createMicrosoftUnsafeLocalFunction');
-var setInnerHTML = require('./setInnerHTML');
-var setTextContent = require('./setTextContent');
+var setInnerHTML = require('../setInnerHTML');
+var setTextContent = require('../setTextContent');
 
 function getNodeAfter(parentNode, node) {
   // Special case for text components, which return [open, close] comments

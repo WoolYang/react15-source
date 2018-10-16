@@ -10,9 +10,9 @@
 
 var SyntheticUIEvent = require('./SyntheticUIEvent');
 
-var getEventCharCode = require('../getEventCharCode');
-var getEventKey = require('../getEventKey');
-var getEventModifierState = require('../getEventModifierState');
+var getEventCharCode = require('../utils/getEventCharCode');
+var getEventKey = require('../utils/getEventKey');
+var getEventModifierState = require('../utils/getEventModifierState');
 
 /**
  * @interface KeyboardEvent

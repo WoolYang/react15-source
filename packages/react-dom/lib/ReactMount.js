@@ -8,14 +8,14 @@
 
 'use strict';
 
-var DOMLazyTree = require('./DOMLazyTree');
+var DOMLazyTree = require('./utils/DOMLazyTree');
 var DOMProperty = require('./DOMProperty');
 var React = require('../../react/lib/React');
 var ReactBrowserEventEmitter = require('./ReactBrowserEventEmitter');
 var ReactDOMComponentTree = require('./ReactDOMComponentTree');
 var ReactDOMContainerInfo = require('./ReactDOMContainerInfo');
 var ReactDOMFeatureFlags = require('./ReactDOMFeatureFlags');
-var ReactFeatureFlags = require('./ReactFeatureFlags');
+var ReactFeatureFlags = require('./utils/ReactFeatureFlags');
 var ReactInstanceMap = require('./ReactInstanceMap');
 var ReactInstrumentation = require('./ReactInstrumentation');
 var ReactMarkupChecksum = require('./server/ReactMarkupChecksum');

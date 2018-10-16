@@ -10,7 +10,7 @@
 
 var SyntheticUIEvent = require('./SyntheticUIEvent');
 
-var getEventModifierState = require('../getEventModifierState');
+var getEventModifierState = require('../utils/getEventModifierState');
 
 /**
  * @interface TouchEvent

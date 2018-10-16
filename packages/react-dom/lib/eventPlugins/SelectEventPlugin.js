@@ -15,7 +15,7 @@ var ReactInputSelection = require('../ReactInputSelection');
 var SyntheticEvent = require('../event/SyntheticEvent');
 
 var getActiveElement = require('fbjs/lib/getActiveElement');
-var isTextInputElement = require('../isTextInputElement');
+var isTextInputElement = require('../utils/isTextInputElement');
 var shallowEqual = require('fbjs/lib/shallowEqual');
 
 var skipSelectionChangeEvent = ExecutionEnvironment.canUseDOM && 'documentMode' in document && document.documentMode <= 11;

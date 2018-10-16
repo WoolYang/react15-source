@@ -12,7 +12,7 @@ var _assign = require('object-assign');
 
 var PooledClass = require('../PooledClass');
 
-var getTextContentAccessor = require('../getTextContentAccessor');
+var getTextContentAccessor = require('../utils/getTextContentAccessor');
 
 /**
  * This helper class stores information about text content of a target node,
