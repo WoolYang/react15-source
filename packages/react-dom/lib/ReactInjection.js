@@ -9,8 +9,8 @@
 'use strict';
 
 var DOMProperty = require('./DOMProperty');
-var EventPluginHub = require('./EventPluginHub');
-var EventPluginUtils = require('./EventPluginUtils');
+var EventPluginHub = require('./event/EventPluginHub');
+var EventPluginUtils = require('./event/EventPluginUtils');
 var ReactComponentEnvironment = require('./ReactComponentEnvironment');
 var ReactEmptyComponent = require('./ReactEmptyComponent');
 var ReactBrowserEventEmitter = require('./ReactBrowserEventEmitter');

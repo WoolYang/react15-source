@@ -9,10 +9,10 @@
 'use strict';
 
 var ARIADOMPropertyConfig = require('./ARIADOMPropertyConfig');
-var BeforeInputEventPlugin = require('./BeforeInputEventPlugin');
-var ChangeEventPlugin = require('./ChangeEventPlugin');
-var DefaultEventPluginOrder = require('./DefaultEventPluginOrder');
-var EnterLeaveEventPlugin = require('./EnterLeaveEventPlugin');
+var BeforeInputEventPlugin = require('./eventPlugins/BeforeInputEventPlugin');
+var ChangeEventPlugin = require('./eventPlugins/ChangeEventPlugin');
+var DefaultEventPluginOrder = require('./eventPlugins/DefaultEventPluginOrder');
+var EnterLeaveEventPlugin = require('./eventPlugins/EnterLeaveEventPlugin');
 var HTMLDOMPropertyConfig = require('./HTMLDOMPropertyConfig');
 var ReactComponentBrowserEnvironment = require('./ReactComponentBrowserEnvironment');
 var ReactDOMComponent = require('./ReactDOMComponent');
@@ -25,8 +25,8 @@ var ReactEventListener = require('./ReactEventListener');
 var ReactInjection = require('./ReactInjection');
 var ReactReconcileTransaction = require('./ReactReconcileTransaction');
 var SVGDOMPropertyConfig = require('./SVGDOMPropertyConfig');
-var SelectEventPlugin = require('./SelectEventPlugin');
-var SimpleEventPlugin = require('./SimpleEventPlugin');
+var SelectEventPlugin = require('./eventPlugins/SelectEventPlugin');
+var SimpleEventPlugin = require('./eventPlugins/SimpleEventPlugin');
 
 var alreadyInjected = false;
 

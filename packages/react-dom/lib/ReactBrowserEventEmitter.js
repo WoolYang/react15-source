@@ -10,7 +10,7 @@
 
 var _assign = require('object-assign');
 
-var EventPluginRegistry = require('./EventPluginRegistry');
+var EventPluginRegistry = require('./event/EventPluginRegistry');
 var ReactEventEmitterMixin = require('./ReactEventEmitterMixin');
 var ViewportMetrics = require('./ViewportMetrics');
 

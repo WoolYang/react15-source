@@ -8,7 +8,7 @@
 
 'use strict';
 
-var EventPluginHub = require('./EventPluginHub');
+var EventPluginHub = require('./event/EventPluginHub');
 
 function runEventQueueInBatch(events) {
   EventPluginHub.enqueueEvents(events);
