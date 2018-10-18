@@ -8,7 +8,7 @@
 
 'use strict';
 
-var validateDOMNesting = require('./validateDOMNesting');
+var validateDOMNesting = require('../validateDOMNesting');
 
 var DOC_NODE_TYPE = 9;
 

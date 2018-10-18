@@ -11,14 +11,14 @@
 'use strict';
 
 var ReactDOMComponentTree = require('./ReactDOMComponentTree');
-var ReactDefaultInjection = require('./ReactDefaultInjection');
+var ReactDefaultInjection = require('./shared/ReactDefaultInjection');
 var ReactMount = require('./ReactMount');
-var ReactReconciler = require('./ReactReconciler');
-var ReactUpdates = require('./ReactUpdates');
+var ReactReconciler = require('./reconciler/ReactReconciler');
+var ReactUpdates = require('./reconciler/ReactUpdates');
 var ReactVersion = require('./ReactVersion');
 
 var findDOMNode = require('./findDOMNode');
-var getHostComponentFromComposite = require('./getHostComponentFromComposite');
+var getHostComponentFromComposite = require('./reconciler/getHostComponentFromComposite');
 var renderSubtreeIntoContainer = require('./renderSubtreeIntoContainer');
 
 ReactDefaultInjection.inject();

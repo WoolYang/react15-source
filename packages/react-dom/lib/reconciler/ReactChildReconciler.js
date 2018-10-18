@@ -11,12 +11,8 @@
 var ReactReconciler = require('./ReactReconciler');
 
 var instantiateReactComponent = require('./instantiateReactComponent');
-var KeyEscapeUtils = require('./utils/KeyEscapeUtils');
-var shouldUpdateReactComponent = require('./shouldUpdateReactComponent');
-var traverseAllChildren = require('./traverseAllChildren');
-var warning = require('fbjs/lib/warning');
-
-var ReactComponentTreeHook;
+var shouldUpdateReactComponent = require('../shouldUpdateReactComponent');
+var traverseAllChildren = require('../traverseAllChildren');
 
 /* if (typeof process !== 'undefined' && process.env && process.env.NODE_ENV === 'test') {
   // Temporary hack.
@@ -64,13 +60,8 @@ var ReactChildReconciler = {
     }
     var childInstances = {};
 
-    if (process.env.NODE_ENV !== 'production') {
-      traverseAllChildren(nestedChildNodes, function (childInsts, child, name) {
-        return instantiateChild(childInsts, child, name, selfDebugID);
-      }, childInstances);
-    } else {
-      traverseAllChildren(nestedChildNodes, instantiateChild, childInstances);
-    }
+    traverseAllChildren(nestedChildNodes, instantiateChild, childInstances);
+
     return childInstances;
   },
 

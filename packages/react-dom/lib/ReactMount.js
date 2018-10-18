@@ -9,21 +9,21 @@
 'use strict';
 
 var DOMLazyTree = require('./utils/DOMLazyTree');
-var DOMProperty = require('./DOMProperty');
+var DOMProperty = require('./shared/DOMProperty');
 var React = require('../../react/lib/React');
 var ReactBrowserEventEmitter = require('./ReactBrowserEventEmitter');
 var ReactDOMComponentTree = require('./ReactDOMComponentTree');
-var ReactDOMContainerInfo = require('./ReactDOMContainerInfo');
-var ReactDOMFeatureFlags = require('./ReactDOMFeatureFlags');
+var ReactDOMContainerInfo = require('./shared/ReactDOMContainerInfo');
+var ReactDOMFeatureFlags = require('./shared/ReactDOMFeatureFlags');
 var ReactFeatureFlags = require('./utils/ReactFeatureFlags');
 var ReactInstanceMap = require('./ReactInstanceMap');
 var ReactMarkupChecksum = require('./server/ReactMarkupChecksum');
-var ReactReconciler = require('./ReactReconciler');
-var ReactUpdateQueue = require('./ReactUpdateQueue');
-var ReactUpdates = require('./ReactUpdates');
+var ReactReconciler = require('./reconciler/ReactReconciler');
+var ReactUpdateQueue = require('./reconciler/ReactUpdateQueue');
+var ReactUpdates = require('./reconciler/ReactUpdates');
 
 var emptyObject = require('fbjs/lib/emptyObject');
-var instantiateReactComponent = require('./instantiateReactComponent');
+var instantiateReactComponent = require('./reconciler/instantiateReactComponent');
 var setInnerHTML = require('./setInnerHTML');
 var shouldUpdateReactComponent = require('./shouldUpdateReactComponent');
 

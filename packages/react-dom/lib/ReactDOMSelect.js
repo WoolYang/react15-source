@@ -12,7 +12,7 @@ var _assign = require('object-assign');
 
 var LinkedValueUtils = require('./LinkedValueUtils');
 var ReactDOMComponentTree = require('./ReactDOMComponentTree');
-var ReactUpdates = require('./ReactUpdates');
+var ReactUpdates = require('./reconciler/ReactUpdates');
 
 var warning = require('fbjs/lib/warning');
 

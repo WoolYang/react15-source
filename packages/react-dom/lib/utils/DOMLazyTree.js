@@ -8,7 +8,7 @@
 
 'use strict';
 
-var DOMNamespaces = require('../DOMNamespaces');
+var DOMNamespaces = require('../shared/DOMNamespaces');
 var setInnerHTML = require('../setInnerHTML');
 
 var createMicrosoftUnsafeLocalFunction = require('./createMicrosoftUnsafeLocalFunction');

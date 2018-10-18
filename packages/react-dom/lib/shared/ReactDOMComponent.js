@@ -12,27 +12,27 @@
 
 var    _assign = require('object-assign');
 
-var AutoFocusUtils = require('./AutoFocusUtils');
-var CSSPropertyOperations = require('./shared/CSSPropertyOperations');
-var DOMLazyTree = require('./utils/DOMLazyTree');
+var AutoFocusUtils = require('../AutoFocusUtils');
+var CSSPropertyOperations = require('./CSSPropertyOperations');
+var DOMLazyTree = require('../utils/DOMLazyTree');
 var DOMNamespaces = require('./DOMNamespaces');
 var DOMProperty = require('./DOMProperty');
 var DOMPropertyOperations = require('./DOMPropertyOperations');
-var EventPluginHub = require('./event/EventPluginHub');
-var EventPluginRegistry = require('./event/EventPluginRegistry');
-var ReactBrowserEventEmitter = require('./ReactBrowserEventEmitter');
+var EventPluginHub = require('../event/EventPluginHub');
+var EventPluginRegistry = require('../event/EventPluginRegistry');
+var ReactBrowserEventEmitter = require('../ReactBrowserEventEmitter');
 var ReactDOMComponentFlags = require('./ReactDOMComponentFlags');
-var ReactDOMComponentTree = require('./ReactDOMComponentTree');
-var ReactDOMInput = require('./ReactDOMInput');
-var ReactDOMOption = require('./ReactDOMOption');
-var ReactDOMSelect = require('./ReactDOMSelect');
-var ReactDOMTextarea = require('./ReactDOMTextarea');
-var ReactMultiChild = require('./ReactMultiChild');
-var ReactServerRenderingTransaction = require('./server/ReactServerRenderingTransaction');
+var ReactDOMComponentTree = require('../ReactDOMComponentTree');
+var ReactDOMInput = require('../ReactDOMInput');
+var ReactDOMOption = require('../ReactDOMOption');
+var ReactDOMSelect = require('../ReactDOMSelect');
+var ReactDOMTextarea = require('../ReactDOMTextarea');
+var ReactMultiChild = require('../reconciler/ReactMultiChild');
+var ReactServerRenderingTransaction = require('../server/ReactServerRenderingTransaction');
 
 var emptyFunction = require('fbjs/lib/emptyFunction');
 var escapeTextContentForBrowser = require('./escapeTextContentForBrowser');
-var inputValueTracking = require('./inputValueTracking');
+var inputValueTracking = require('../inputValueTracking');
 
 var Flags = ReactDOMComponentFlags;
 var deleteListener = EventPluginHub.deleteListener;

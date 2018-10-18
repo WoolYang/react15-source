@@ -10,8 +10,8 @@
 
 var _assign = require('object-assign');
 
-var DOMLazyTree = require('./utils/DOMLazyTree');
-var ReactDOMComponentTree = require('./ReactDOMComponentTree');
+var DOMLazyTree = require('../utils/DOMLazyTree');
+var ReactDOMComponentTree = require('../ReactDOMComponentTree');
 
 var ReactDOMEmptyComponent = function (instantiate) {
   // ReactCompositeComponent uses this:

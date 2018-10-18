@@ -10,11 +10,11 @@
 
 var _assign = require('object-assign');
 
-var CallbackQueue = require('./utils/CallbackQueue');
-var PooledClass = require('./utils/PooledClass');
-var ReactFeatureFlags = require('./utils/ReactFeatureFlags');
+var CallbackQueue = require('../utils/CallbackQueue');
+var PooledClass = require('../utils/PooledClass');
+var ReactFeatureFlags = require('../utils/ReactFeatureFlags');
 var ReactReconciler = require('./ReactReconciler');
-var Transaction = require('./Transaction');
+var Transaction = require('../Transaction');
 
 var invariant = require('fbjs/lib/invariant');
 

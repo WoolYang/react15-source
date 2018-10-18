@@ -15,7 +15,7 @@ var ReactReconciler = require('./ReactReconciler');
 var ReactChildReconciler = require('./ReactChildReconciler');
 
 var emptyFunction = require('fbjs/lib/emptyFunction');
-var flattenChildren = require('./flattenChildren');
+var flattenChildren = require('../flattenChildren');
 
 /**
  * Make an update for markup to be rendered and inserted at a supplied index.

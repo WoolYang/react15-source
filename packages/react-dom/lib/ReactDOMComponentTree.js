@@ -8,8 +8,8 @@
 
 'use strict';
 
-var DOMProperty = require('./DOMProperty');
-var ReactDOMComponentFlags = require('./ReactDOMComponentFlags');
+var DOMProperty = require('./shared/DOMProperty');
+var ReactDOMComponentFlags = require('./shared/ReactDOMComponentFlags');
 
 var ATTR_NAME = DOMProperty.ID_ATTRIBUTE_NAME;
 var Flags = ReactDOMComponentFlags;

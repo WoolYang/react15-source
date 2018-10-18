@@ -8,8 +8,8 @@
 
 'use strict';
 
-var DOMChildrenOperations = require('./utils/DOMChildrenOperations');
-var ReactDOMIDOperations = require('./ReactDOMIDOperations');
+var DOMChildrenOperations = require('../utils/DOMChildrenOperations');
+var ReactDOMIDOperations = require('../ReactDOMIDOperations');
 
 /**
  * Abstracts away all functionality of the reconciler that requires knowledge of

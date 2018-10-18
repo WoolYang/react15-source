@@ -10,9 +10,9 @@
 
 var  _assign = require('object-assign');
 
-var DOMChildrenOperations = require('./utils/DOMChildrenOperations');
-var DOMLazyTree = require('./utils/DOMLazyTree');
-var ReactDOMComponentTree = require('./ReactDOMComponentTree');
+var DOMChildrenOperations = require('../utils/DOMChildrenOperations');
+var DOMLazyTree = require('../utils/DOMLazyTree');
+var ReactDOMComponentTree = require('../ReactDOMComponentTree');
 
 var escapeTextContentForBrowser = require('./escapeTextContentForBrowser');
 

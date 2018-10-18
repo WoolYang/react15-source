@@ -8,9 +8,9 @@
 
 'use strict';
 
-var DOMProperty = require('./DOMProperty');
+var DOMProperty = require('../shared/DOMProperty');
 
-var quoteAttributeValueForBrowser = require('./quoteAttributeValueForBrowser');
+var quoteAttributeValueForBrowser = require('../shared/quoteAttributeValueForBrowser');
 
 var VALID_ATTRIBUTE_NAME_REGEX = new RegExp('^[' + DOMProperty.ATTRIBUTE_NAME_START_CHAR + '][' + DOMProperty.ATTRIBUTE_NAME_CHAR + ']*$');
 var illegalAttributeNameCache = {};

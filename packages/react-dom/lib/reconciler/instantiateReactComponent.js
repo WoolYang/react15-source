@@ -12,7 +12,7 @@
 var _assign = require('object-assign');
 
 var ReactCompositeComponent = require('./ReactCompositeComponent');
-var ReactEmptyComponent = require('./ReactEmptyComponent');
+var ReactEmptyComponent = require('../shared/ReactEmptyComponent');
 var ReactHostComponent = require('./ReactHostComponent');
 
 //var getNextDebugID = require('../../react/lib/getNextDebugID');

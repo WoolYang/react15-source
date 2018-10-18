@@ -11,7 +11,7 @@
 var _assign = require('object-assign');
 
 var EventPluginRegistry = require('./event/EventPluginRegistry');
-var ReactEventEmitterMixin = require('./ReactEventEmitterMixin');
+var ReactEventEmitterMixin = require('./reconciler/ReactEventEmitterMixin');
 var ViewportMetrics = require('./ViewportMetrics');
 
 var getVendorPrefixedEventName = require('./getVendorPrefixedEventName');

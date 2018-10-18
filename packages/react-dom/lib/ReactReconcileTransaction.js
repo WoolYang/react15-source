@@ -15,7 +15,7 @@ var PooledClass = require('./utils/PooledClass');
 var ReactBrowserEventEmitter = require('./ReactBrowserEventEmitter');
 var ReactInputSelection = require('./ReactInputSelection');
 var Transaction = require('./Transaction');
-var ReactUpdateQueue = require('./ReactUpdateQueue');
+var ReactUpdateQueue = require('./reconciler/ReactUpdateQueue');
 
 /**
  * Ensures that, when possible, the selection range (currently selected text

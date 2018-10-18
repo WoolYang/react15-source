@@ -8,25 +8,25 @@
 
 'use strict';
 
-var ARIADOMPropertyConfig = require('./shared/ARIADOMPropertyConfig');
-var BeforeInputEventPlugin = require('./eventPlugins/BeforeInputEventPlugin');
-var ChangeEventPlugin = require('./eventPlugins/ChangeEventPlugin');
-var DefaultEventPluginOrder = require('./eventPlugins/DefaultEventPluginOrder');
-var EnterLeaveEventPlugin = require('./eventPlugins/EnterLeaveEventPlugin');
+var ARIADOMPropertyConfig = require('./ARIADOMPropertyConfig');
+var BeforeInputEventPlugin = require('../eventPlugins/BeforeInputEventPlugin');
+var ChangeEventPlugin = require('../eventPlugins/ChangeEventPlugin');
+var DefaultEventPluginOrder = require('../eventPlugins/DefaultEventPluginOrder');
+var EnterLeaveEventPlugin = require('../eventPlugins/EnterLeaveEventPlugin');
 var HTMLDOMPropertyConfig = require('./HTMLDOMPropertyConfig');
 var ReactComponentBrowserEnvironment = require('./ReactComponentBrowserEnvironment');
 var ReactDOMComponent = require('./ReactDOMComponent');
-var ReactDOMComponentTree = require('./ReactDOMComponentTree');
+var ReactDOMComponentTree = require('../ReactDOMComponentTree');
 var ReactDOMEmptyComponent = require('./ReactDOMEmptyComponent');
-var ReactDOMTreeTraversal = require('./ReactDOMTreeTraversal');
+var ReactDOMTreeTraversal = require('../ReactDOMTreeTraversal');
 var ReactDOMTextComponent = require('./ReactDOMTextComponent');
-var ReactDefaultBatchingStrategy = require('./ReactDefaultBatchingStrategy');
-var ReactEventListener = require('./ReactEventListener');
+var ReactDefaultBatchingStrategy = require('../reconciler/ReactDefaultBatchingStrategy');
+var ReactEventListener = require('../ReactEventListener');
 var ReactInjection = require('./ReactInjection');
-var ReactReconcileTransaction = require('./ReactReconcileTransaction');
+var ReactReconcileTransaction = require('../ReactReconcileTransaction');
 var SVGDOMPropertyConfig = require('./SVGDOMPropertyConfig');
-var SelectEventPlugin = require('./eventPlugins/SelectEventPlugin');
-var SimpleEventPlugin = require('./eventPlugins/SimpleEventPlugin');
+var SelectEventPlugin = require('../eventPlugins/SelectEventPlugin');
+var SimpleEventPlugin = require('../eventPlugins/SimpleEventPlugin');
 
 var alreadyInjected = false;
 

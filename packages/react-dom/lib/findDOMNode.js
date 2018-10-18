@@ -11,7 +11,7 @@
 var ReactDOMComponentTree = require('./ReactDOMComponentTree');
 var ReactInstanceMap = require('./ReactInstanceMap');
 
-var getHostComponentFromComposite = require('./getHostComponentFromComposite');
+var getHostComponentFromComposite = require('./reconciler/getHostComponentFromComposite');
 
 /**
  * Returns the DOM node rendered by this element.

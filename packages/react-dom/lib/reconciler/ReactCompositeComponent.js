@@ -13,8 +13,8 @@ var _assign = require('object-assign');
 
 var ReactComponentEnvironment = require('./ReactComponentEnvironment');
 //var ReactCurrentOwner = require('../../react/lib/ReactCurrentOwner');
-var ReactErrorUtils = require('./utils/ReactErrorUtils');
-var ReactInstanceMap = require('./ReactInstanceMap');
+var ReactErrorUtils = require('../utils/ReactErrorUtils');
+var ReactInstanceMap = require('../ReactInstanceMap');
 var ReactNodeTypes = require('./ReactNodeTypes');
 var ReactReconciler = require('./ReactReconciler');
 
@@ -25,7 +25,7 @@ var ReactReconciler = require('./ReactReconciler');
 var emptyObject = require('fbjs/lib/emptyObject');
 //var invariant = require('fbjs/lib/invariant');
 var shallowEqual = require('fbjs/lib/shallowEqual');
-var shouldUpdateReactComponent = require('./shouldUpdateReactComponent');
+var shouldUpdateReactComponent = require('../shouldUpdateReactComponent');
 
 var CompositeTypes = {
   ImpureClass: 0,

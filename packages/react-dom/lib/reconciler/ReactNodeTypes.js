@@ -9,7 +9,7 @@
 
 'use strict';
 
-var React = require('../../react/lib/React');
+var React = require('../../../react/lib/React');
 
 var ReactNodeTypes = {
   HOST: 0,

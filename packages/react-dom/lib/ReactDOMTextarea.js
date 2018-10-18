@@ -12,7 +12,7 @@
 
 var LinkedValueUtils = require('./LinkedValueUtils');
 var ReactDOMComponentTree = require('./ReactDOMComponentTree');
-var ReactUpdates = require('./ReactUpdates');
+var ReactUpdates = require('./reconciler/ReactUpdates');
 
 function forceUpdateIfMounted() {
   if (this._rootNodeID) {

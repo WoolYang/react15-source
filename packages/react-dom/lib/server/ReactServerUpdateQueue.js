@@ -11,7 +11,7 @@
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var ReactUpdateQueue = require('../ReactUpdateQueue');
+var ReactUpdateQueue = require('../reconciler/ReactUpdateQueue');
 /**
  * This is the update queue used for server rendering.
  * It delegates to ReactUpdateQueue while server rendering is in progress and
