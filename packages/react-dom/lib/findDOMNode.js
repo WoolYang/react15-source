@@ -9,7 +9,7 @@
 'use strict';
 
 var ReactDOMComponentTree = require('./ReactDOMComponentTree');
-var ReactInstanceMap = require('./ReactInstanceMap');
+var ReactInstanceMap = require('./shared/ReactInstanceMap');
 
 var getHostComponentFromComposite = require('./reconciler/getHostComponentFromComposite');
 

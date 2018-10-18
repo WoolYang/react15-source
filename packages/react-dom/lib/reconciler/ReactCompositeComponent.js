@@ -14,7 +14,7 @@ var _assign = require('object-assign');
 var ReactComponentEnvironment = require('./ReactComponentEnvironment');
 //var ReactCurrentOwner = require('../../react/lib/ReactCurrentOwner');
 var ReactErrorUtils = require('../utils/ReactErrorUtils');
-var ReactInstanceMap = require('../ReactInstanceMap');
+var ReactInstanceMap = require('../shared/ReactInstanceMap');
 var ReactNodeTypes = require('./ReactNodeTypes');
 var ReactReconciler = require('./ReactReconciler');
 

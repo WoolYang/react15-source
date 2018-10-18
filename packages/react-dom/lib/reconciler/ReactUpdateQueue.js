@@ -8,7 +8,7 @@
 
 'use strict';
 
-var ReactInstanceMap = require('../ReactInstanceMap');
+var ReactInstanceMap = require('../shared/ReactInstanceMap');
 var ReactUpdates = require('./ReactUpdates');
 
 function enqueueUpdate(internalInstance) {

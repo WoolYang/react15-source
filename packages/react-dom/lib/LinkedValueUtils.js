@@ -8,16 +8,12 @@
 
 'use strict';
 
-var _prodInvariant = require('./unless/reactProdInvariant');
-
-var ReactPropTypesSecret = require('./ReactPropTypesSecret');
+var ReactPropTypesSecret = require('./utils/ReactPropTypesSecret');
 var propTypesFactory = require('prop-types/factory');
 
 var React = require('../../react/lib/React');
 var PropTypes = propTypesFactory(React.isValidElement);
 
-var invariant = require('fbjs/lib/invariant');
-var warning = require('fbjs/lib/warning');
 
 var hasReadOnlyValue = {
   button: true,
