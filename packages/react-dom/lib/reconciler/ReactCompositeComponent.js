@@ -8,19 +8,13 @@
 
 'use strict';
 
-//var _prodInvariant = require('./reactProdInvariant'),
 var _assign = require('object-assign');
 
 var ReactComponentEnvironment = require('./ReactComponentEnvironment');
-//var ReactCurrentOwner = require('../../react/lib/ReactCurrentOwner');
 var ReactErrorUtils = require('../utils/ReactErrorUtils');
 var ReactInstanceMap = require('../shared/ReactInstanceMap');
 var ReactNodeTypes = require('./ReactNodeTypes');
 var ReactReconciler = require('./ReactReconciler');
-
-/* if (process.env.NODE_ENV !== 'production') {
-  var checkReactTypeSpec = require('./checkReactTypeSpec');
-} */
 
 var emptyObject = require('fbjs/lib/emptyObject');
 //var invariant = require('fbjs/lib/invariant');
@@ -551,8 +545,6 @@ var ReactCompositeComponent = {
    * @private
    */
   _performComponentUpdate: function (nextElement, nextProps, nextState, nextContext, transaction, unmaskedContext) {
-    //var _this2 = this;
-
     var inst = this._instance;
 
     var hasComponentDidUpdate = Boolean(inst.componentDidUpdate);

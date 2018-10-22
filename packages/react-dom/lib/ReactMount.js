@@ -1,11 +1,3 @@
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
 'use strict';
 
 var DOMLazyTree = require('./utils/DOMLazyTree');
@@ -22,7 +14,6 @@ var ReactReconciler = require('./reconciler/ReactReconciler');
 var ReactUpdateQueue = require('./reconciler/ReactUpdateQueue');
 var ReactUpdates = require('./reconciler/ReactUpdates');
 
-var emptyObject = require('fbjs/lib/emptyObject');
 var instantiateReactComponent = require('./reconciler/instantiateReactComponent');
 var setInnerHTML = require('./setInnerHTML');
 var shouldUpdateReactComponent = require('./shouldUpdateReactComponent');
@@ -30,8 +21,6 @@ var shouldUpdateReactComponent = require('./shouldUpdateReactComponent');
 var ATTR_NAME = DOMProperty.ID_ATTRIBUTE_NAME;
 
 var DOC_NODE_TYPE = 9;
-
-var instancesByReactRootID = {};
 
 /**
  * @param {DOMElement|DOMDocument} container DOM element that may contain
@@ -42,10 +31,12 @@ function getReactRootElementInContainer(container) {
   if (!container) {
     return null;
   }
-
+ 
   if (container.nodeType === DOC_NODE_TYPE) {
+     //9 最外层的Root element
     return container.documentElement;
   } else {
+    // 父级节点
     return container.firstChild;
   }
 }
@@ -147,6 +138,7 @@ function getHostRootInstanceInContainer(container) {
   return prevHostInstance && !prevHostInstance._hostParent ? prevHostInstance : null;
 }
 
+//包裹顶级容器
 function getTopLevelWrapperInContainer(container) {
   var root = getHostRootInstanceInContainer(container);
   return root ? root._hostContainerInfo._topLevelWrapper : null;
@@ -156,15 +148,14 @@ function getTopLevelWrapperInContainer(container) {
  * Temporary (?) hack so that we can store all top-level pending updates on
  * composites instead of having to worry about different types of components
  * here.
+ * TopLevelWrapper用于包裹顶级组件
  */
 var topLevelRootCounter = 1;
 var TopLevelWrapper = function () {
   this.rootID = topLevelRootCounter++;
 };
 TopLevelWrapper.prototype.isReactComponent = {};
-if (process.env.NODE_ENV !== 'production') {
-  TopLevelWrapper.displayName = 'TopLevelWrapper';
-}
+
 TopLevelWrapper.prototype.render = function () {
   return this.props.child;
 };
@@ -190,11 +181,6 @@ TopLevelWrapper.isReactTopLevelWrapper = true;
  */
 var ReactMount = {
   TopLevelWrapper: TopLevelWrapper,
-
-  /**
-   * Used by devtools. The keys are not important.
-   */
-  _instancesByReactRootID: instancesByReactRootID,
 
   /**
    * This is a hook provided to support rendering React components while
@@ -245,19 +231,11 @@ var ReactMount = {
 
     ReactUpdates.batchedUpdates(batchedMountComponentIntoNode, componentInstance, container, shouldReuseMarkup, context);
 
-    var wrapperID = componentInstance._instance.rootID;
-    instancesByReactRootID[wrapperID] = componentInstance;
-
     return componentInstance;
   },
 
   /**
-   * Renders a React component into the DOM in the supplied `container`.
-   *
-   * If the React component was previously rendered into `container`, this will
-   * perform an update on it and only mutate the DOM as necessary to reflect the
-   * latest React component.
-   *
+   * 当前组件的父组件，第一次渲染时为null
    * @param {ReactComponent} parentComponent The conceptual parent of this render tree.
    * @param {ReactElement} nextElement Component element to render.
    * @param {DOMElement} container DOM element to render into.
@@ -278,7 +256,7 @@ var ReactMount = {
       var parentInst = ReactInstanceMap.get(parentComponent);
       nextContext = parentInst._processChildContext(parentInst._context);
     } else {
-      nextContext = emptyObject;
+      nextContext = {};
     }
 
     var prevComponent = getTopLevelWrapperInContainer(container);
@@ -311,17 +289,11 @@ var ReactMount = {
   },
 
   /**
-   * Renders a React component into the DOM in the supplied `container`.
-   * See https://facebook.github.io/react/docs/top-level-api.html#reactdom.render
-   *
-   * If the React component was previously rendered into `container`, this will
-   * perform an update on it and only mutate the DOM as necessary to reflect the
-   * latest React component.
-   *
-   * @param {ReactElement} nextElement Component element to render.
-   * @param {DOMElement} container DOM element to render into.
-   * @param {?function} callback function triggered on completion
-   * @return {ReactComponent} Component instance rendered in `container`.
+   * 顶级API render,渲染react组件到对应容器，若已经渲染的只执行更新
+   * @param {ReactElement} nextElement 渲染组件
+   * @param {DOMElement} container 渲染容器
+   * @param {?function} callback 渲染后出发
+   * @return {ReactComponent} 被渲染入容器的组件实例
    */
   render: function (nextElement, container, callback) {
     return ReactMount._renderSubtreeIntoContainer(null, nextElement, container, callback);
@@ -347,7 +319,6 @@ var ReactMount = {
       return false;
     }
 
-    delete instancesByReactRootID[prevComponent._instance.rootID];
     ReactUpdates.batchedUpdates(unmountComponentFromNode, prevComponent, container, false);
     return true;
   },
