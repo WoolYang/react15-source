@@ -1,11 +1,3 @@
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
 'use strict';
 
 
@@ -129,8 +121,6 @@ function enqueue(queue, update) {
 function processQueue(inst, updateQueue) {
   ReactComponentEnvironment.processChildrenUpdates(inst, updateQueue);
 }
-
-var setChildrenForInstrumentation = emptyFunction;
 
 /**
  * ReactMultiChild are capable of reconciling multiple children.

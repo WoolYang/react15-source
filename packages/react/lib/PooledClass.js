@@ -1,17 +1,4 @@
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- * 
- */
-
 'use strict';
-
-//var _prodInvariant = require('./reactProdInvariant');
-
-//var invariant = require('fbjs/lib/invariant');
 
 /**
  * Static poolers. Several custom versions for each potential number of
@@ -66,7 +53,6 @@ var fourArgumentPooler = function (a1, a2, a3, a4) {
 
 var standardReleaser = function (instance) {
   var Klass = this;
- // !(instance instanceof Klass) ? process.env.NODE_ENV !== 'production' ? invariant(false, 'Trying to release an instance into a pool of a different type.') : _prodInvariant('25') : void 0;
   instance.destructor();
   if (Klass.instancePool.length < Klass.poolSize) {
     Klass.instancePool.push(instance);

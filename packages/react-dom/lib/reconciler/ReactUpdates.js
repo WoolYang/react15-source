@@ -8,8 +8,6 @@
 
 'use strict';
 
-var _assign = require('object-assign');
-
 var CallbackQueue = require('../utils/CallbackQueue');
 var PooledClass = require('../utils/PooledClass');
 var ReactFeatureFlags = require('../utils/ReactFeatureFlags');
@@ -63,7 +61,7 @@ function ReactUpdatesFlushTransaction() {
   /* useCreateElement */true);
 }
 
-_assign(ReactUpdatesFlushTransaction.prototype, Transaction, {
+Object.assign(ReactUpdatesFlushTransaction.prototype, Transaction, {
   getTransactionWrappers: function () {
     return TRANSACTION_WRAPPERS;
   },

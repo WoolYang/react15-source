@@ -1,18 +1,6 @@
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
 'use strict';
 
-var    _assign = require('object-assign');
-
 var ReactNoopUpdateQueue = require('./ReactNoopUpdateQueue');
-
-var emptyObject = require('fbjs/lib/emptyObject');
 
 /**
  * Base class helpers for the updating state of a component.
@@ -20,7 +8,7 @@ var emptyObject = require('fbjs/lib/emptyObject');
 function ReactComponent(props, context, updater) {
   this.props = props;
   this.context = context;
-  this.refs = emptyObject;
+  this.refs = {};
   // We initialize the default updater but the real one gets injected by the
   // renderer.
   this.updater = updater || ReactNoopUpdateQueue;
@@ -94,7 +82,7 @@ function ReactPureComponent(props, context, updater) {
   // Duplicated from ReactComponent.
   this.props = props;
   this.context = context;
-  this.refs = emptyObject;
+  this.refs = {};
   // We initialize the default updater but the real one gets injected by the
   // renderer.
   this.updater = updater || ReactNoopUpdateQueue;
@@ -105,7 +93,7 @@ ComponentDummy.prototype = ReactComponent.prototype;
 ReactPureComponent.prototype = new ComponentDummy();
 ReactPureComponent.prototype.constructor = ReactPureComponent;
 // Avoid an extra prototype jump for these methods.
-_assign(ReactPureComponent.prototype, ReactComponent.prototype);
+Object.assign(ReactPureComponent.prototype, ReactComponent.prototype);
 ReactPureComponent.prototype.isPureReactComponent = true;
 
 module.exports = {

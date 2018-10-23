@@ -1,14 +1,4 @@
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
 'use strict';
-
-var _assign = require('object-assign');
 
 var PooledClass = require('../utils/PooledClass');
 
@@ -87,7 +77,7 @@ function SyntheticEvent(dispatchConfig, targetInst, nativeEvent, nativeEventTarg
   return this;
 }
 
-_assign(SyntheticEvent.prototype, {
+Object.assign(SyntheticEvent.prototype, {
   preventDefault: function () {
     this.defaultPrevented = true;
     var event = this.nativeEvent;
@@ -170,11 +160,11 @@ SyntheticEvent.augmentClass = function (Class, Interface) {
   E.prototype = Super.prototype;
   var prototype = new E();
 
-  _assign(prototype, Class.prototype);
+  Object.assign(prototype, Class.prototype);
   Class.prototype = prototype;
   Class.prototype.constructor = Class;
 
-  Class.Interface = _assign({}, Super.Interface, Interface);
+  Class.Interface = Object.assign({}, Super.Interface, Interface);
   Class.augmentClass = Super.augmentClass;
 
   PooledClass.addPoolingTo(Class, PooledClass.fourArgumentPooler);

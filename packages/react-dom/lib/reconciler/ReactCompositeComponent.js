@@ -1,14 +1,4 @@
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
 'use strict';
-
-var _assign = require('object-assign');
 
 var ReactComponentEnvironment = require('./ReactComponentEnvironment');
 var ReactErrorUtils = require('../utils/ReactErrorUtils');
@@ -388,7 +378,7 @@ var ReactCompositeComponent = {
     }
 
     if (childContext) {
-      return _assign({}, currentContext, childContext);
+      return Object.assign({}, currentContext, childContext);
     }
     return currentContext;
   },
@@ -523,10 +513,10 @@ var ReactCompositeComponent = {
       return queue[0];
     }
 
-    var nextState = _assign({}, replace ? queue[0] : inst.state);
+    var nextState = Object.assign({}, replace ? queue[0] : inst.state);
     for (var i = replace ? 1 : 0; i < queue.length; i++) {
       var partial = queue[i];
-      _assign(nextState, typeof partial === 'function' ? partial.call(inst, nextState, props, context) : partial);
+      Object.assign(nextState, typeof partial === 'function' ? partial.call(inst, nextState, props, context) : partial);
     }
 
     return nextState;

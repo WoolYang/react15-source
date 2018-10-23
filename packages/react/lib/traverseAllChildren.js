@@ -1,22 +1,9 @@
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
 'use strict';
 
-//var _prodInvariant = require('./reactProdInvariant');
-
-//var ReactCurrentOwner = require('./ReactCurrentOwner');
 var REACT_ELEMENT_TYPE = require('./ReactElementSymbol');
 
 var getIteratorFn = require('./getIteratorFn');
-//var invariant = require('fbjs/lib/invariant');
 var KeyEscapeUtils = require('./KeyEscapeUtils');
-//var warning = require('fbjs/lib/warning');
 
 var SEPARATOR = '.';
 var SUBSEPARATOR = ':';
@@ -103,17 +90,6 @@ function traverseAllChildrenImpl(children, nameSoFar, callback, traverseContext)
           subtreeCount += traverseAllChildrenImpl(child, nextName, callback, traverseContext);
         }
       } else {
-/*         if (process.env.NODE_ENV !== 'production') {
-          var mapsAsChildrenAddendum = '';
-          if (ReactCurrentOwner.current) {
-            var mapsAsChildrenOwnerName = ReactCurrentOwner.current.getName();
-            if (mapsAsChildrenOwnerName) {
-              mapsAsChildrenAddendum = ' Check the render method of `' + mapsAsChildrenOwnerName + '`.';
-            }
-          }
-        //  process.env.NODE_ENV !== 'production' ? warning(didWarnAboutMaps, 'Using Maps as children is not yet fully supported. It is an ' + 'experimental feature that might be removed. Convert it to a ' + 'sequence / iterable of keyed ReactElements instead.%s', mapsAsChildrenAddendum) : void 0;
-          didWarnAboutMaps = true;
-        } */
         // Iterator will provide entry [k,v] tuples rather than values.
         while (!(step = iterator.next()).done) {
           var entry = step.value;

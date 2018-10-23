@@ -1,23 +1,8 @@
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
 'use strict';
-
-//var _prodInvariant = require('./reactProdInvariant'),
-var _assign = require('object-assign');
 
 var ReactCompositeComponent = require('./ReactCompositeComponent');
 var ReactEmptyComponent = require('../shared/ReactEmptyComponent');
 var ReactHostComponent = require('./ReactHostComponent');
-
-//var getNextDebugID = require('../../react/lib/getNextDebugID');
-//var invariant = require('fbjs/lib/invariant');
-//var warning = require('fbjs/lib/warning');
 
 // To avoid a cyclic dependency, we create the final class in this module
 var ReactCompositeComponentWrapper = function (element) {
@@ -92,7 +77,7 @@ function instantiateReactComponent(node) {
   return instance;
 }
 
-_assign(ReactCompositeComponentWrapper.prototype, ReactCompositeComponent, {
+Object.assign(ReactCompositeComponentWrapper.prototype, ReactCompositeComponent, {
   _instantiateReactComponent: instantiateReactComponent
 });
 

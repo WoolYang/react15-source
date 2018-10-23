@@ -1,17 +1,8 @@
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
 'use strict';
 
 var PooledClass = require('./PooledClass');
 var ReactElement = require('./ReactElement');
 
-var emptyFunction = require('fbjs/lib/emptyFunction');
 var traverseAllChildren = require('./traverseAllChildren');
 
 var twoArgumentPooler = PooledClass.twoArgumentPooler;
@@ -21,6 +12,11 @@ var userProvidedKeyEscapeRegex = /\/+/g;
 function escapeUserProvidedKey(text) {
   return ('' + text).replace(userProvidedKeyEscapeRegex, '$&/');
 }
+
+var emptyFunction = function emptyFunction() {};
+  emptyFunction.thatReturnsArgument = function (arg) {
+  return arg;
+};
 
 /**
  * PooledClass representing the bookkeeping associated with performing a child

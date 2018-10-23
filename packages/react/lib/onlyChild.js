@@ -1,17 +1,4 @@
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
 'use strict';
-
-//var _prodInvariant = require('./reactProdInvariant');
-
-//var ReactElement = require('./ReactElement');
-
-//var invariant = require('fbjs/lib/invariant');
 
 /**
  * Returns the first child in a collection of children and verifies that there
@@ -28,7 +15,6 @@
  * structure.
  */
 function onlyChild(children) {
- // !ReactElement.isValidElement(children) ? process.env.NODE_ENV !== 'production' ? invariant(false, 'React.Children.only expected to receive a single React element child.') : _prodInvariant('143') : void 0;
   return children;
 }
 

@@ -1,14 +1,4 @@
-/**
- * Copyright (c) 2014-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
 'use strict';
-
-var _assign = require('object-assign');
 
 var ReactCurrentOwner = require('./ReactCurrentOwner');
 
@@ -157,7 +147,7 @@ ReactElement.cloneElement = function (element, config, children) {
   var propName;
 
   // Original props are copied
-  var props = _assign({}, element.props);
+  var props = Object.assign({}, element.props);
 
   // Reserved names are extracted
   var key = element.key;
