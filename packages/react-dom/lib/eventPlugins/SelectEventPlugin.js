@@ -9,7 +9,7 @@
 'use strict';
 
 var EventPropagators = require('../event/EventPropagators');
-var ExecutionEnvironment = require('fbjs/lib/ExecutionEnvironment');
+var ExecutionEnvironment = require('../utils/ExecutionEnvironment');
 var ReactDOMComponentTree = require('../ReactDOMComponentTree');
 var ReactInputSelection = require('../ReactInputSelection');
 var SyntheticEvent = require('../event/SyntheticEvent');

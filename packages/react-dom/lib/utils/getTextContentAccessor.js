@@ -8,7 +8,7 @@
 
 'use strict';
 
-var ExecutionEnvironment = require('fbjs/lib/ExecutionEnvironment');
+var ExecutionEnvironment = require('./ExecutionEnvironment');
 
 var contentKey = null;
 

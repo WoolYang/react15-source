@@ -9,7 +9,7 @@
 'use strict';
 
 var EventPropagators = require('../event/EventPropagators');
-var ExecutionEnvironment = require('fbjs/lib/ExecutionEnvironment');
+var ExecutionEnvironment = require('../utils/ExecutionEnvironment');
 var FallbackCompositionState = require('./FallbackCompositionState');
 var SyntheticCompositionEvent = require('../syntheticEvents/SyntheticCompositionEvent');
 var SyntheticInputEvent = require('../syntheticEvents/SyntheticInputEvent');

@@ -9,7 +9,7 @@
 'use strict';
 
 var CSSProperty = require('./CSSProperty');
-var ExecutionEnvironment = require('fbjs/lib/ExecutionEnvironment');
+var ExecutionEnvironment = require('../utils/ExecutionEnvironment');
 
 var dangerousStyleValue = require('./dangerousStyleValue');
 var hyphenateStyleName = require('fbjs/lib/hyphenateStyleName');

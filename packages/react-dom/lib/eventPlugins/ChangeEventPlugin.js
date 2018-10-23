@@ -10,7 +10,7 @@
 
 var EventPluginHub = require('../event/EventPluginHub');
 var EventPropagators = require('../event/EventPropagators');
-var ExecutionEnvironment = require('fbjs/lib/ExecutionEnvironment');
+var ExecutionEnvironment = require('../utils/ExecutionEnvironment');
 var ReactDOMComponentTree = require('../ReactDOMComponentTree');
 var ReactUpdates = require('../reconciler/ReactUpdates');
 var SyntheticEvent = require('../event/SyntheticEvent');

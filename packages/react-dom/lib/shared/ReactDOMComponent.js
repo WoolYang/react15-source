@@ -1,21 +1,9 @@
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-/* global hasOwnProperty:true */
-
 'use strict';
-
-var    _assign = require('object-assign');
 
 var AutoFocusUtils = require('../AutoFocusUtils');
 var CSSPropertyOperations = require('./CSSPropertyOperations');
 var DOMLazyTree = require('../utils/DOMLazyTree');
-var DOMNamespaces = require('./DOMNamespaces');
+var DOMNamespaces = require('../unless/DOMNamespaces');
 var DOMProperty = require('./DOMProperty');
 var DOMPropertyOperations = require('./DOMPropertyOperations');
 var EventPluginHub = require('../event/EventPluginHub');
@@ -30,7 +18,6 @@ var ReactDOMTextarea = require('../ReactDOMTextarea');
 var ReactMultiChild = require('../reconciler/ReactMultiChild');
 var ReactServerRenderingTransaction = require('../server/ReactServerRenderingTransaction');
 
-var emptyFunction = require('fbjs/lib/emptyFunction');
 var escapeTextContentForBrowser = require('./escapeTextContentForBrowser');
 var inputValueTracking = require('../inputValueTracking');
 
@@ -100,7 +87,7 @@ function optionPostMount() {
   ReactDOMOption.postMountWrapper(inst);
 }
 
-var setAndValidateContentChildDev = emptyFunction;
+//var setAndValidateContentChildDev = emptyFunction;
 
 // There are so many media events, it makes sense to just
 // maintain a list rather than create a `trapBubbledEvent` for each
@@ -207,15 +194,15 @@ var newlineEatingTags = {
 // For HTML, certain tags cannot have children. This has the same purpose as
 // `omittedCloseTags` except that `menuitem` should still have its closing tag.
 
-var voidElementTags = _assign({
+/* var voidElementTags = _assign({
   menuitem: true
-}, omittedCloseTags);
+}, omittedCloseTags); */
 
 // We accept any tag to be rendered but since this gets injected into arbitrary
 // HTML, we want to make sure that it's a safe tag.
 // http://www.w3.org/TR/REC-xml/#NT-Name
 
-var VALID_TAG_REGEX = /^[a-zA-Z][a-zA-Z:_\.\-\d]*$/; // Simplified subset
+//var VALID_TAG_REGEX = /^[a-zA-Z][a-zA-Z:_\.\-\d]*$/; // Simplified subset
 var validatedTagCache = {};
 var hasOwnProperty = {}.hasOwnProperty;
 
@@ -453,7 +440,7 @@ ReactDOMComponent.Mixin = {
         if (propKey === STYLE) {
           if (propValue) {
 
-            propValue = this._previousStyleCopy = _assign({}, props.style);
+            propValue = this._previousStyleCopy = Object.assign({}, props.style);
           }
           propValue = CSSPropertyOperations.createMarkupForStyles(propValue, this);
         }
@@ -689,7 +676,7 @@ ReactDOMComponent.Mixin = {
       }
       if (propKey === STYLE) {
         if (nextProp) {
-          nextProp = this._previousStyleCopy = _assign({}, nextProp);
+          nextProp = this._previousStyleCopy = Object.assign({}, nextProp);
         } else {
           this._previousStyleCopy = null;
         }
@@ -839,6 +826,6 @@ ReactDOMComponent.Mixin = {
   }
 };
 
-_assign(ReactDOMComponent.prototype, ReactDOMComponent.Mixin, ReactMultiChild.Mixin);
+Object.assign(ReactDOMComponent.prototype, ReactDOMComponent.Mixin, ReactMultiChild.Mixin);
 
 module.exports = ReactDOMComponent;

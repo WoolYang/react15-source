@@ -15,7 +15,7 @@ var ReactUpdateQueue = require('./reconciler/ReactUpdateQueue');
 var ReactUpdates = require('./reconciler/ReactUpdates');
 
 var instantiateReactComponent = require('./reconciler/instantiateReactComponent');
-var setInnerHTML = require('./setInnerHTML');
+//var setInnerHTML = require('./setInnerHTML');
 var shouldUpdateReactComponent = require('./shouldUpdateReactComponent');
 
 var ATTR_NAME = DOMProperty.ID_ATTRIBUTE_NAME;
@@ -36,7 +36,7 @@ function getReactRootElementInContainer(container) {
      //9 最外层的Root element
     return container.documentElement;
   } else {
-    // 父级节点
+    // 子节点
     return container.firstChild;
   }
 }
@@ -179,9 +179,8 @@ TopLevelWrapper.isReactTopLevelWrapper = true;
  *
  * Inside of `container`, the first element rendered is the "reactRoot".
  */
-var ReactMount = {
-  TopLevelWrapper: TopLevelWrapper,
 
+var ReactMount = {
   /**
    * This is a hook provided to support rendering React components while
    * ensuring that the apparent scroll position of its `container` does not
@@ -217,7 +216,7 @@ var ReactMount = {
    *
    * @param {ReactElement} nextElement element to render
    * @param {DOMElement} container container to render into
-   * @param {boolean} shouldReuseMarkup if we should skip the markup insertion
+   * @param {boolean} shouldReuseMarkup 是否调过标记插入
    * @return {ReactComponent} nextComponent
    */
   _renderNewRootComponent: function (nextElement, container, shouldReuseMarkup, context) {
@@ -235,7 +234,7 @@ var ReactMount = {
   },
 
   /**
-   * 当前组件的父组件，第一次渲染时为null
+   * parentComponent用于unstable_renderSubtreeIntoContainer API
    * @param {ReactComponent} parentComponent The conceptual parent of this render tree.
    * @param {ReactElement} nextElement Component element to render.
    * @param {DOMElement} container DOM element to render into.
@@ -247,23 +246,25 @@ var ReactMount = {
   },
 
   _renderSubtreeIntoContainer: function (parentComponent, nextElement, container, callback) {
+    //包裹顶级组件
     var nextWrappedElement = React.createElement(TopLevelWrapper, {
       child: nextElement
     });
-
     var nextContext;
+    //用于unstable_renderSubtreeIntoContainer API
     if (parentComponent) {
       var parentInst = ReactInstanceMap.get(parentComponent);
       nextContext = parentInst._processChildContext(parentInst._context);
     } else {
       nextContext = {};
     }
-
+    //先前组件
     var prevComponent = getTopLevelWrapperInContainer(container);
 
     if (prevComponent) {
       var prevWrappedElement = prevComponent._currentElement;
       var prevElement = prevWrappedElement.props.child;
+      //比对新旧组件觉得是否更新
       if (shouldUpdateReactComponent(prevElement, nextElement)) {
         var publicInst = prevComponent._renderedComponent.getPublicInstance();
         var updatedCallback = callback && function () {
@@ -279,8 +280,9 @@ var ReactMount = {
     var reactRootElement = getReactRootElementInContainer(container);
     var containerHasReactMarkup = reactRootElement && !!internalGetID(reactRootElement);
     var containerHasNonRootReactChild = hasNonRootReactChild(container);
-
+    //false，初次渲染
     var shouldReuseMarkup = containerHasReactMarkup && !prevComponent && !containerHasNonRootReactChild;
+    //核心渲染,首次渲染
     var component = ReactMount._renderNewRootComponent(nextWrappedElement, container, shouldReuseMarkup, nextContext)._renderedComponent.getPublicInstance();
     if (callback) {
       callback.call(component);
@@ -301,7 +303,6 @@ var ReactMount = {
 
   /**
    * Unmounts and destroys the React component rendered in the `container`.
-   * See https://facebook.github.io/react/docs/top-level-api.html#reactdom.unmountcomponentatnode
    *
    * @param {DOMElement} container DOM element containing a React component.
    * @return {boolean} True if a component was found in and unmounted from
@@ -345,7 +346,9 @@ var ReactMount = {
       }
       DOMLazyTree.insertTreeBefore(container, markup, null);
     } else {
-      setInnerHTML(container, markup);
+      //去除ie8兼容
+      container.innerHTML = markup;
+      //setInnerHTML(container, markup);
       ReactDOMComponentTree.precacheNode(instance, container.firstChild);
     }
 

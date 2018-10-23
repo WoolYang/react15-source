@@ -8,7 +8,7 @@
 
 'use strict';
 
-var ExecutionEnvironment = require('fbjs/lib/ExecutionEnvironment');
+var ExecutionEnvironment = require('./utils/ExecutionEnvironment');
 
 var getNodeForCharacterOffset = require('./utils/getNodeForCharacterOffset');
 var getTextContentAccessor = require('./utils/getTextContentAccessor');

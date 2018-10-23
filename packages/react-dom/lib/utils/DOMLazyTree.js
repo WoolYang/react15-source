@@ -8,10 +8,10 @@
 
 'use strict';
 
-var DOMNamespaces = require('../shared/DOMNamespaces');
-var setInnerHTML = require('../setInnerHTML');
+//var DOMNamespaces = require('../unless/DOMNamespaces');
+//var setInnerHTML = require('../unless/setInnerHTML');
 
-var createMicrosoftUnsafeLocalFunction = require('./createMicrosoftUnsafeLocalFunction');
+//var createMicrosoftUnsafeLocalFunction = require('./createMicrosoftUnsafeLocalFunction');
 var setTextContent = require('../setTextContent');
 
 var ELEMENT_NODE_TYPE = 1;
@@ -41,27 +41,28 @@ function insertTreeChildren(tree) {
       insertTreeBefore(node, children[i], null);
     }
   } else if (tree.html != null) {
-    setInnerHTML(node, tree.html);
+    node.innerHTML = tree.html;
+    //setInnerHTML(node, tree.html);
   } else if (tree.text != null) {
     setTextContent(node, tree.text);
   }
 }
 
-var insertTreeBefore = createMicrosoftUnsafeLocalFunction(function (parentNode, tree, referenceNode) {
+var insertTreeBefore = function (parentNode, tree, referenceNode) {
   // DocumentFragments aren't actually part of the DOM after insertion so
   // appending children won't update the DOM. We need to ensure the fragment
   // is properly populated first, breaking out of our lazy approach for just
   // this level. Also, some <object> plugins (like Flash Player) will read
   // <param> nodes immediately upon insertion into the DOM, so <object>
   // must also be populated prior to insertion into the DOM.
-  if (tree.node.nodeType === DOCUMENT_FRAGMENT_NODE_TYPE || tree.node.nodeType === ELEMENT_NODE_TYPE && tree.node.nodeName.toLowerCase() === 'object' && (tree.node.namespaceURI == null || tree.node.namespaceURI === DOMNamespaces.html)) {
+  if (tree.node.nodeType === DOCUMENT_FRAGMENT_NODE_TYPE || tree.node.nodeType === ELEMENT_NODE_TYPE && tree.node.nodeName.toLowerCase() === 'object' ) {
     insertTreeChildren(tree);
     parentNode.insertBefore(tree.node, referenceNode);
   } else {
     parentNode.insertBefore(tree.node, referenceNode);
     insertTreeChildren(tree);
   }
-});
+};
 
 function replaceChildWithTree(oldNode, newTree) {
   oldNode.parentNode.replaceChild(newTree.node, oldNode);
@@ -80,7 +81,8 @@ function queueHTML(tree, html) {
   if (enableLazy) {
     tree.html = html;
   } else {
-    setInnerHTML(tree.node, html);
+    tree.node.innerHTML = html;
+    //setInnerHTML(tree.node, html);
   }
 }
 

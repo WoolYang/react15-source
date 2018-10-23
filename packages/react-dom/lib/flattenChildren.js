@@ -1,24 +1,7 @@
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- * 
- */
 
 'use strict';
 
 var traverseAllChildren = require('./traverseAllChildren');
-
-/* if (typeof process !== 'undefined' && process.env && process.env.NODE_ENV === 'test') {
-  // Temporary hack.
-  // Inline requires don't work well with Jest:
-  // https://github.com/facebook/react/issues/7240
-  // Remove the inline requires when we don't need them anymore:
-  // https://github.com/facebook/react/pull/7178
-  ReactComponentTreeHook = require('../../react/lib/ReactComponentTreeHook');
-} */
 
 /**
  * @param {function} traverseContext Context passed through traversal.
@@ -26,7 +9,7 @@ var traverseAllChildren = require('./traverseAllChildren');
  * @param {!string} name String name of key path to child.
  * @param {number=} selfDebugID Optional debugID of the current internal instance.
  */
-function flattenSingleChildIntoContext(traverseContext, child, name, selfDebugID) {
+function flattenSingleChildIntoContext(traverseContext, child, name) {
   // We found a component instance.
   if (traverseContext && typeof traverseContext === 'object') {
     var result = traverseContext;
@@ -43,7 +26,7 @@ function flattenSingleChildIntoContext(traverseContext, child, name, selfDebugID
  * children will not be included in the resulting object.
  * @return {!object} flattened children keyed by name.
  */
-function flattenChildren(children, selfDebugID) {
+function flattenChildren(children) {
   if (children == null) {
     return children;
   }

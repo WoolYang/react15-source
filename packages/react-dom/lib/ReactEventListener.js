@@ -11,7 +11,7 @@
 var _assign = require('object-assign');
 
 var EventListener = require('fbjs/lib/EventListener');
-var ExecutionEnvironment = require('fbjs/lib/ExecutionEnvironment');
+var ExecutionEnvironment = require('./utils/ExecutionEnvironment');
 var PooledClass = require('./utils/PooledClass');
 var ReactDOMComponentTree = require('./ReactDOMComponentTree');
 var ReactUpdates = require('./reconciler/ReactUpdates');

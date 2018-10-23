@@ -1,17 +1,4 @@
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- * 
- */
-
 'use strict';
-
-var _prodInvariant = require('./reactProdInvariant');
-
-var invariant = require('fbjs/lib/invariant');
 
 /**
  * Accumulates items that must not be null or undefined.
@@ -21,7 +8,6 @@ var invariant = require('fbjs/lib/invariant');
  * @return {*|array<*>} An accumulation of items.
  */
 function accumulate(current, next) {
-  !(next != null) ? process.env.NODE_ENV !== 'production' ? invariant(false, 'accumulate(...): Accumulated items must be not be null or undefined.') : _prodInvariant('29') : void 0;
 
   if (current == null) {
     return next;

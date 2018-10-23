@@ -8,8 +8,6 @@
 
 'use strict';
 
-var validateDOMNesting = require('../utils/validateDOMNesting');
-
 var DOC_NODE_TYPE = 9;
 
 function ReactDOMContainerInfo(topLevelWrapper, node) {
@@ -21,9 +19,6 @@ function ReactDOMContainerInfo(topLevelWrapper, node) {
     _tag: node ? node.nodeName.toLowerCase() : null,
     _namespaceURI: node ? node.namespaceURI : null
   };
-  if (process.env.NODE_ENV !== 'production') {
-    info._ancestorInfo = node ? validateDOMNesting.updatedAncestorInfo(null, info._tag, null) : null;
-  }
   return info;
 }
 

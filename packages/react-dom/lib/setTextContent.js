@@ -8,9 +8,9 @@
 
 'use strict';
 
-var ExecutionEnvironment = require('fbjs/lib/ExecutionEnvironment');
+var ExecutionEnvironment = require('./utils/ExecutionEnvironment');
 var escapeTextContentForBrowser = require('./shared/escapeTextContentForBrowser');
-var setInnerHTML = require('./setInnerHTML');
+//var setInnerHTML = require('./unless/setInnerHTML');
 
 /**
  * Set the textContent property of a node, ensuring that whitespace is preserved
@@ -41,7 +41,8 @@ if (ExecutionEnvironment.canUseDOM) {
         node.nodeValue = text;
         return;
       }
-      setInnerHTML(node, escapeTextContentForBrowser(text));
+      node.innerHTML = escapeTextContentForBrowser(text);
+      //setInnerHTML(node, escapeTextContentForBrowser(text));
     };
   }
 }

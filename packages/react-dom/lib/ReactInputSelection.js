@@ -1,18 +1,37 @@
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
 'use strict';
 
 var ReactDOMSelection = require('./ReactDOMSelection');
 
-var containsNode = require('fbjs/lib/containsNode');
-var focusNode = require('fbjs/lib/focusNode');
 var getActiveElement = require('fbjs/lib/getActiveElement');
+
+function isTextNode(object) {
+  return isNode(object) && object.nodeType == 3;
+}
+
+function isNode(object) {
+  var doc = object ? object.ownerDocument || object : document;
+  var defaultView = doc.defaultView || window;
+  return !!(object && (typeof defaultView.Node === 'function' ? object instanceof defaultView.Node : typeof object === 'object' && typeof object.nodeType === 'number' && typeof object.nodeName === 'string'));
+}
+
+function containsNode(outerNode, innerNode) {
+  if (!outerNode || !innerNode) {
+    return false;
+  } else if (outerNode === innerNode) {
+    return true;
+  } else if (isTextNode(outerNode)) {
+    return false;
+  } else if (isTextNode(innerNode)) {
+    return containsNode(outerNode, innerNode.parentNode);
+  } else if ('contains' in outerNode) {
+    return outerNode.contains(innerNode);
+  } else if (outerNode.compareDocumentPosition) {
+    return !!(outerNode.compareDocumentPosition(innerNode) & 16);
+  } else {
+    return false;
+  }
+}
+
 
 function isInDocument(node) {
   return containsNode(document.documentElement, node);
@@ -51,7 +70,7 @@ var ReactInputSelection = {
       if (ReactInputSelection.hasSelectionCapabilities(priorFocusedElem)) {
         ReactInputSelection.setSelection(priorFocusedElem, priorSelectionRange);
       }
-      focusNode(priorFocusedElem);
+      priorFocusedElem.focus();
     }
   },
 

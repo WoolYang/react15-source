@@ -1,20 +1,9 @@
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
 'use strict';
-
-var _assign = require('object-assign');
 
 var React = require('../../react/lib/React');
 var ReactDOMComponentTree = require('./ReactDOMComponentTree');
 var ReactDOMSelect = require('./ReactDOMSelect');
 
-var warning = require('fbjs/lib/warning');
 var didWarnInvalidOptionChildren = false;
 
 function flattenChildren(children) {
@@ -30,7 +19,6 @@ function flattenChildren(children) {
       content += child;
     } else if (!didWarnInvalidOptionChildren) {
       didWarnInvalidOptionChildren = true;
-      process.env.NODE_ENV !== 'production' ? warning(false, 'Only strings and numbers are supported as <option> children.') : void 0;
     }
   });
 
@@ -42,11 +30,6 @@ function flattenChildren(children) {
  */
 var ReactDOMOption = {
   mountWrapper: function (inst, props, hostParent) {
-    // TODO (yungsters): Remove support for `selected` in <option>.
-    if (process.env.NODE_ENV !== 'production') {
-      process.env.NODE_ENV !== 'production' ? warning(props.selected == null, 'Use the `defaultValue` or `value` props on <select> instead of ' + 'setting `selected` on <option>.') : void 0;
-    }
-
     // Look up whether this option is 'selected'
     var selectValue = null;
     if (hostParent != null) {
@@ -98,7 +81,7 @@ var ReactDOMOption = {
   },
 
   getHostProps: function (inst, props) {
-    var hostProps = _assign({ selected: undefined, children: undefined }, props);
+    var hostProps = Object.assign({ selected: undefined, children: undefined }, props);
 
     // Read state only from initial mount because <select> updates value
     // manually; we need the initial state only for server rendering

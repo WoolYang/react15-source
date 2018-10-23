@@ -11,8 +11,8 @@
 var DOMLazyTree = require('./DOMLazyTree');
 var Danger = require('../shared/Danger');
 
-var createMicrosoftUnsafeLocalFunction = require('./createMicrosoftUnsafeLocalFunction');
-var setInnerHTML = require('../setInnerHTML');
+//var createMicrosoftUnsafeLocalFunction = require('./createMicrosoftUnsafeLocalFunction');
+//var setInnerHTML = require('../unless/setInnerHTML');
 var setTextContent = require('../setTextContent');
 
 function getNodeAfter(parentNode, node) {
@@ -32,12 +32,12 @@ function getNodeAfter(parentNode, node) {
  * @param {number} index Index at which to insert the child.
  * @internal
  */
-var insertChildAt = createMicrosoftUnsafeLocalFunction(function (parentNode, childNode, referenceNode) {
+var insertChildAt = function (parentNode, childNode, referenceNode) {
   // We rely exclusively on `insertBefore(node, null)` instead of also using
   // `appendChild(node)`. (Using `undefined` is not allowed by all browsers so
   // we are careful to use `null`.)
   parentNode.insertBefore(childNode, referenceNode);
-});
+};
 
 function insertLazyTreeChildAt(parentNode, childTree, referenceNode) {
   DOMLazyTree.insertTreeBefore(parentNode, childTree, referenceNode);
@@ -135,7 +135,8 @@ var DOMChildrenOperations = {
           moveChild(parentNode, update.fromNode, getNodeAfter(parentNode, update.afterNode));
           break;
         case 'SET_MARKUP':
-          setInnerHTML(parentNode, update.content);
+          parentNode.innerHTML = update.content;
+          //setInnerHTML(parentNode, update.content);
           break;
         case 'TEXT_CONTENT':
           setTextContent(parentNode, update.content);

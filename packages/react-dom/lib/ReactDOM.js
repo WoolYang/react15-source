@@ -6,7 +6,6 @@ var ReactMount = require('./ReactMount');
 var ReactUpdates = require('./reconciler/ReactUpdates');
 
 var findDOMNode = require('./findDOMNode');
-var renderSubtreeIntoContainer = require('./renderSubtreeIntoContainer');
 
 ReactDefaultInjection.inject();
 
@@ -16,7 +15,7 @@ var ReactDOM = {
   unmountComponentAtNode: ReactMount.unmountComponentAtNode, //插入dom
 
   unstable_batchedUpdates: ReactUpdates.batchedUpdates,
-  unstable_renderSubtreeIntoContainer: renderSubtreeIntoContainer
+  unstable_renderSubtreeIntoContainer: ReactMount.renderSubtreeIntoContainer
 };
 
 module.exports = ReactDOM;
