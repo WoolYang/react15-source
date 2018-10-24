@@ -1,14 +1,4 @@
-/**
- * Copyright (c) 2014-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
 'use strict';
-
-var _assign = require('object-assign');
 
 var DOMLazyTree = require('../utils/DOMLazyTree');
 var ReactDOMComponentTree = require('../ReactDOMComponentTree');
@@ -22,7 +12,7 @@ var ReactDOMEmptyComponent = function (instantiate) {
   this._hostContainerInfo = null;
   this._domID = 0;
 };
-_assign(ReactDOMEmptyComponent.prototype, {
+Object.assign(ReactDOMEmptyComponent.prototype, {
   mountComponent: function (transaction, hostParent, hostContainerInfo, context) {
     var domID = hostContainerInfo._idCounter++;
     this._domID = domID;

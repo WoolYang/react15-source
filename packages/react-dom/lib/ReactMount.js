@@ -6,7 +6,6 @@ var React = require('../../react/lib/React');
 var ReactBrowserEventEmitter = require('./ReactBrowserEventEmitter');
 var ReactDOMComponentTree = require('./ReactDOMComponentTree');
 var ReactDOMContainerInfo = require('./shared/ReactDOMContainerInfo');
-var ReactDOMFeatureFlags = require('./shared/ReactDOMFeatureFlags');
 var ReactFeatureFlags = require('./utils/ReactFeatureFlags');
 var ReactInstanceMap = require('./shared/ReactInstanceMap');
 var ReactMarkupChecksum = require('./server/ReactMarkupChecksum');
@@ -86,7 +85,7 @@ function mountComponentIntoNode(wrapperInstance, container, transaction, shouldR
 function batchedMountComponentIntoNode(componentInstance, container, shouldReuseMarkup, context) {
   var transaction = ReactUpdates.ReactReconcileTransaction.getPooled(
   /* useCreateElement */
-  !shouldReuseMarkup && ReactDOMFeatureFlags.useCreateElement);
+  !shouldReuseMarkup && true);
   transaction.perform(mountComponentIntoNode, null, componentInstance, container, transaction, shouldReuseMarkup, context);
   ReactUpdates.ReactReconcileTransaction.release(transaction);
 }

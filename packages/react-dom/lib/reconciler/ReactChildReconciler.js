@@ -4,7 +4,7 @@ var ReactReconciler = require('./ReactReconciler');
 
 var instantiateReactComponent = require('./instantiateReactComponent');
 var shouldUpdateReactComponent = require('../shouldUpdateReactComponent');
-var traverseAllChildren = require('../traverseAllChildren');
+var traverseAllChildren = require('../../../react/lib/traverseAllChildren');
 
 function instantiateChild(childInstances, child, name) {
   // We found a component instance.

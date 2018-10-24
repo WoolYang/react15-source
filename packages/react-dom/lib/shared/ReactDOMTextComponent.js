@@ -1,14 +1,4 @@
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
 'use strict';
-
-var  _assign = require('object-assign');
 
 var DOMChildrenOperations = require('../utils/DOMChildrenOperations');
 var DOMLazyTree = require('../utils/DOMLazyTree');
@@ -46,7 +36,7 @@ var ReactDOMTextComponent = function (text) {
   this._commentNodes = null;
 };
 
-_assign(ReactDOMTextComponent.prototype, {
+Object.assign(ReactDOMTextComponent.prototype, {
   /**
    * Creates the markup for this text node. This node is not intended to have
    * any features besides containing text content.

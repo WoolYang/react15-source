@@ -1,11 +1,3 @@
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-'use strict';
 
 var ReactDOMContainerInfo = require('../ReactDOMContainerInfo');
 var ReactDefaultBatchingStrategy = require('../ReactDefaultBatchingStrategy');
@@ -15,7 +7,6 @@ var ReactServerBatchingStrategy = require('./ReactServerBatchingStrategy');
 var ReactServerRenderingTransaction = require('./ReactServerRenderingTransaction');
 var ReactUpdates = require('../ReactUpdates');
 
-var emptyObject = require('fbjs/lib/emptyObject');
 var instantiateReactComponent = require('../instantiateReactComponent');
 
 var pendingTransactions = 0;
@@ -35,7 +26,7 @@ function renderToStringImpl(element, makeStaticMarkup) {
 
     return transaction.perform(function () {
       var componentInstance = instantiateReactComponent(element, true);
-      var markup = ReactReconciler.mountComponent(componentInstance, transaction, null, ReactDOMContainerInfo(), emptyObject, 0 /* parentDebugID */
+      var markup = ReactReconciler.mountComponent(componentInstance, transaction, null, ReactDOMContainerInfo(), {}, 0 /* parentDebugID */
       );
 
       if (!makeStaticMarkup) {
