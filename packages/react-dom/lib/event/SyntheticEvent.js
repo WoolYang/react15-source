@@ -2,9 +2,13 @@
 
 var PooledClass = require('../utils/PooledClass');
 
-var emptyFunction = require('fbjs/lib/emptyFunction');
-
 var shouldBeReleasedProperties = ['dispatchConfig', '_targetInst', 'nativeEvent', 'isDefaultPrevented', 'isPropagationStopped', '_dispatchListeners', '_dispatchInstances'];
+
+function makeEmptyFunction(arg) {
+  return function () {
+    return arg;
+  };
+}
 
 /**
  * @interface Event
@@ -14,7 +18,7 @@ var EventInterface = {
   type: null,
   target: null,
   // currentTarget is set when dispatching; no use in copying it here
-  currentTarget: emptyFunction.thatReturnsNull,
+  currentTarget: makeEmptyFunction(null),
   eventPhase: null,
   bubbles: null,
   cancelable: null,
@@ -69,11 +73,11 @@ function SyntheticEvent(dispatchConfig, targetInst, nativeEvent, nativeEventTarg
 
   var defaultPrevented = nativeEvent.defaultPrevented != null ? nativeEvent.defaultPrevented : nativeEvent.returnValue === false;
   if (defaultPrevented) {
-    this.isDefaultPrevented = emptyFunction.thatReturnsTrue;
+    this.isDefaultPrevented = makeEmptyFunction(true);
   } else {
-    this.isDefaultPrevented = emptyFunction.thatReturnsFalse;
+    this.isDefaultPrevented = makeEmptyFunction(false);
   }
-  this.isPropagationStopped = emptyFunction.thatReturnsFalse;
+  this.isPropagationStopped = makeEmptyFunction(false);
   return this;
 }
 
@@ -91,7 +95,7 @@ Object.assign(SyntheticEvent.prototype, {
     } else if (typeof event.returnValue !== 'unknown') {
       event.returnValue = false;
     }
-    this.isDefaultPrevented = emptyFunction.thatReturnsTrue;
+    this.isDefaultPrevented = makeEmptyFunction(true);
   },
 
   stopPropagation: function () {
@@ -112,7 +116,7 @@ Object.assign(SyntheticEvent.prototype, {
       event.cancelBubble = true;
     }
 
-    this.isPropagationStopped = emptyFunction.thatReturnsTrue;
+    this.isPropagationStopped = makeEmptyFunction(true);
   },
 
   /**
@@ -121,7 +125,7 @@ Object.assign(SyntheticEvent.prototype, {
    * won't be added back into the pool.
    */
   persist: function () {
-    this.isPersistent = emptyFunction.thatReturnsTrue;
+    this.isPersistent = makeEmptyFunction(true);
   },
 
   /**
@@ -129,7 +133,7 @@ Object.assign(SyntheticEvent.prototype, {
    *
    * @return {boolean} True if this should not be released, false otherwise.
    */
-  isPersistent: emptyFunction.thatReturnsFalse,
+  isPersistent: makeEmptyFunction(false),
 
   /**
    * `PooledClass` looks for `destructor` on each instance it releases.
