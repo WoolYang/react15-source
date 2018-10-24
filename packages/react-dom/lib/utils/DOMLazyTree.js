@@ -8,10 +8,6 @@
 
 'use strict';
 
-//var DOMNamespaces = require('../unless/DOMNamespaces');
-//var setInnerHTML = require('../unless/setInnerHTML');
-
-//var createMicrosoftUnsafeLocalFunction = require('./createMicrosoftUnsafeLocalFunction');
 var setTextContent = require('../setTextContent');
 
 var ELEMENT_NODE_TYPE = 1;

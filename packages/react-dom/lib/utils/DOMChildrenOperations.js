@@ -11,8 +11,6 @@
 var DOMLazyTree = require('./DOMLazyTree');
 var Danger = require('../shared/Danger');
 
-//var createMicrosoftUnsafeLocalFunction = require('./createMicrosoftUnsafeLocalFunction');
-//var setInnerHTML = require('../unless/setInnerHTML');
 var setTextContent = require('../setTextContent');
 
 function getNodeAfter(parentNode, node) {

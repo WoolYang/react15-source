@@ -3,7 +3,6 @@
 var AutoFocusUtils = require('../AutoFocusUtils');
 var CSSPropertyOperations = require('./CSSPropertyOperations');
 var DOMLazyTree = require('../utils/DOMLazyTree');
-var DOMNamespaces = require('../unless/DOMNamespaces');
 var DOMProperty = require('./DOMProperty');
 var DOMPropertyOperations = require('./DOMPropertyOperations');
 var EventPluginHub = require('../event/EventPluginHub');
@@ -323,14 +322,14 @@ ReactDOMComponent.Mixin = {
       namespaceURI = hostContainerInfo._namespaceURI;
       parentTag = hostContainerInfo._tag;
     }
-    if (namespaceURI == null || namespaceURI === DOMNamespaces.svg && parentTag === 'foreignobject') {
-      namespaceURI = DOMNamespaces.html;
+    if (namespaceURI == null || namespaceURI === 'http://www.w3.org/2000/svg' && parentTag === 'foreignobject') {
+      namespaceURI = 'http://www.w3.org/1999/xhtml';
     }
-    if (namespaceURI === DOMNamespaces.html) {
+    if (namespaceURI === 'http://www.w3.org/1999/xhtml') {
       if (this._tag === 'svg') {
-        namespaceURI = DOMNamespaces.svg;
+        namespaceURI = 'http://www.w3.org/2000/svg';
       } else if (this._tag === 'math') {
-        namespaceURI = DOMNamespaces.mathml;
+        namespaceURI = 'http://www.w3.org/1998/Math/MathML';
       }
     }
     this._namespaceURI = namespaceURI;
@@ -339,7 +338,7 @@ ReactDOMComponent.Mixin = {
     if (transaction.useCreateElement) {
       var ownerDocument = hostContainerInfo._ownerDocument;
       var el;
-      if (namespaceURI === DOMNamespaces.html) {
+      if (namespaceURI === 'http://www.w3.org/1999/xhtml') {
         if (this._tag === 'script') {
           // Create the script via .innerHTML so its "parser-inserted" flag is
           // set to true and it does not execute

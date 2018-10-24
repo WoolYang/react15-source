@@ -10,7 +10,7 @@ class Test extends React.Component {
     }
 
     componentDidMount() {
-       // this.setState({ color: '#ccc' })
+        this.setState({ color: '#ccc' })
     }
 
     render() {
