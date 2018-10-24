@@ -3,7 +3,6 @@
 var ReactBaseClasses = require('./ReactBaseClasses');
 var ReactChildren = require('./ReactChildren');
 var ReactElement = require('./ReactElement');
-//var ReactPropTypes = require('./unless/ReactPropTypes');
 
 var onlyChild = require('./onlyChild');
 

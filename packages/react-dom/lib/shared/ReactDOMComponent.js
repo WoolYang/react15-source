@@ -30,7 +30,6 @@ var registrationNameModules = EventPluginRegistry.registrationNameModules;
 var CONTENT_TYPES = { string: true, number: true };
 
 var STYLE = 'style';
-var HTML = '__html';
 var RESERVED_PROPS = {
   children: null,
   dangerouslySetInnerHTML: null,
