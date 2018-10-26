@@ -1,6 +1,6 @@
 'use strict';
 
-var traverseAllChildren = require('./traverseAllChildren');
+var traverseAllChildren = require('./utils/traverseAllChildren');
 
 /**
  * @param {function} traverseContext Context passed through traversal.

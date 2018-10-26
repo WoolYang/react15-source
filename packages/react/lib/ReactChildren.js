@@ -1,9 +1,8 @@
 'use strict';
 
-var PooledClass = require('./PooledClass');
 var ReactElement = require('./ReactElement');
-
-var traverseAllChildren = require('./traverseAllChildren');
+var PooledClass = require('./utils/PooledClass');
+var traverseAllChildren = require('./utils/traverseAllChildren');
 
 var twoArgumentPooler = PooledClass.twoArgumentPooler;
 var fourArgumentPooler = PooledClass.fourArgumentPooler;
@@ -173,10 +172,14 @@ function toArray(children) {
   return result;
 }
 
+function onlyChild(children) {
+  return children;
+}
+
 var ReactChildren = {
   forEach: forEachChildren,
   map: mapChildren,
-  mapIntoWithKeyPrefixInternal: mapIntoWithKeyPrefixInternal,
+  only: onlyChild,
   count: countChildren,
   toArray: toArray
 };
