@@ -3,41 +3,28 @@
 var ReactNoopUpdateQueue = require('./ReactNoopUpdateQueue');
 
 /**
- * Base class helpers for the updating state of a component.
+ * 用于组件更新状态的基类帮助程序。
  */
 function ReactComponent(props, context, updater) {
   this.props = props;
   this.context = context;
   this.refs = {};
-  // We initialize the default updater but the real one gets injected by the
-  // renderer.
+  //初始化默认的更新程序，但真实的更新程序会由渲染器注入
   this.updater = updater || ReactNoopUpdateQueue;
 }
 
 ReactComponent.prototype.isReactComponent = {};
 
 /**
- * Sets a subset of the state. Always use this to mutate
- * state. You should treat `this.state` as immutable.
+ * 设置state的子集。 总是使用它来改变state。 你应该将`this.state`视为不可变的。 
+ * 无法保证`this.state`会立即更新，因此在调用此方法后访问`this.state`可能会返回旧值。
+ * 无法保证对`setState`的调用将同步运行，因为它们最终可能会被批处理。 
+ * 您可以提供可选的回调，该回调将在实际完成对setState的调用时执行。 当一个函数被提供给setState时，它将在未来的某个时刻被调用（不是同步的）。 
+ * 它将使用最新的组件参数（state, props, context）进行调用。 这些值可能与此不同。因为您的函数可能在receiveProps之后但在shouldComponentUpdate之前调用，
+ * 并且此新state，props和context也不会被分配给它。
  *
- * There is no guarantee that `this.state` will be immediately updated, so
- * accessing `this.state` after calling this method may return the old value.
- *
- * There is no guarantee that calls to `setState` will run synchronously,
- * as they may eventually be batched together.  You can provide an optional
- * callback that will be executed when the call to setState is actually
- * completed.
- *
- * When a function is provided to setState, it will be called at some point in
- * the future (not synchronously). It will be called with the up to date
- * component arguments (state, props, context). These values can be different
- * from this.* because your function may be called after receiveProps but before
- * shouldComponentUpdate, and this new state, props, and context will not yet be
- * assigned to this.
- *
- * @param {object|function} partialState Next partial state or function to
- *        produce next partial state to be merged with current state.
- * @param {?function} callback Called after state is updated.
+ * @param {object|function} partialState 下一个部分状态或函数产生下一个要与当前状态合并的部分状态。
+ * @param {?function} callback 执行完更新后的回调
  * @final
  * @protected
  */
@@ -49,16 +36,13 @@ ReactComponent.prototype.setState = function (partialState, callback) {
 };
 
 /**
- * Forces an update. This should only be invoked when it is known with
- * certainty that we are **not** in a DOM transaction.
- *
- * You may want to call this when you know that some deeper aspect of the
- * component's state has changed but `setState` was not called.
- *
- * This will not invoke `shouldComponentUpdate`, but it will invoke
- * `componentWillUpdate` and `componentDidUpdate`.
- *
- * @param {?function} callback Called after update is complete.
+ * 读者注：实际应用场景有待研究
+ * 
+ * 强制更新。 只有在确定不是在DOM事务中时才应该调用它。 
+ * 当您知道组件状态的某些更深层次已更改但未调用“setState”时，您可能需要调用此方法。 
+ * 这不会调用`shouldComponentUpdate`，但会调用`componentWillUpdate`和`componentDidUpdate`。
+ * 
+ * @param {?function} callback 更新完成后调用。
  * @final
  * @protected
  */
@@ -70,21 +54,18 @@ ReactComponent.prototype.forceUpdate = function (callback) {
 };
 
 /**
- * Deprecated APIs. These APIs used to exist on classic React classes but since
- * we would like to deprecate them, we're not going to move them over to this
- * modern base class. Instead, we define a getter that warns if it's accessed.
+  弃用的API。 这些API过去常常存在于经典的React类中，但由于我们不想弃用它们，因此我们不打算将它们移到这个现代基类中。 
+  相反，我们定义一个getter，它会在访问时发出警告。
  */
 
 /**
- * Base class helpers for the updating state of a component.
+ * 用于组件更新状态的基类帮助程序。
  */
 function ReactPureComponent(props, context, updater) {
-  // Duplicated from ReactComponent.
+  // 从ReactComponent复制。
   this.props = props;
   this.context = context;
   this.refs = {};
-  // We initialize the default updater but the real one gets injected by the
-  // renderer.
   this.updater = updater || ReactNoopUpdateQueue;
 }
 
@@ -92,7 +73,7 @@ function ComponentDummy() {}
 ComponentDummy.prototype = ReactComponent.prototype;
 ReactPureComponent.prototype = new ComponentDummy();
 ReactPureComponent.prototype.constructor = ReactPureComponent;
-// Avoid an extra prototype jump for these methods.
+// 避免为这些方法进行额外的原型跳转。
 Object.assign(ReactPureComponent.prototype, ReactComponent.prototype);
 ReactPureComponent.prototype.isPureReactComponent = true;
 

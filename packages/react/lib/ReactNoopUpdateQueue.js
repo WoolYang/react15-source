@@ -1,13 +1,13 @@
 'use strict';
 
 /**
- * This is the abstract API for an update queue.
+ * 更新队列的抽象API
  */
 var ReactNoopUpdateQueue = {
   /**
-   * Checks whether or not this composite component is mounted.
-   * @param {ReactClass} publicInstance The instance we want to test.
-   * @return {boolean} True if mounted, false otherwise.
+   * 检查是否已挂载此复合组件。
+   * @param {ReactClass} publicInstance 所检查的实例
+   * @return {boolean}
    * @protected
    * @final
    */
@@ -16,48 +16,36 @@ var ReactNoopUpdateQueue = {
   },
 
   /**
-   * Enqueue a callback that will be executed after all the pending updates
-   * have processed.
+   * 排队将在处理完所有待处理更新后执行的回调。
    *
-   * @param {ReactClass} publicInstance The instance to use as `this` context.
+   * @param {ReactClass} publicInstance 用作`this`上下文的实例。
    * @param {?function} callback Called after state is updated.
    * @internal
    */
   enqueueCallback: function (publicInstance, callback) {},
 
   /**
-   * Forces an update. This should only be invoked when it is known with
-   * certainty that we are **not** in a DOM transaction.
    *
-   * You may want to call this when you know that some deeper aspect of the
-   * component's state has changed but `setState` was not called.
-   *
-   * This will not invoke `shouldComponentUpdate`, but it will invoke
-   * `componentWillUpdate` and `componentDidUpdate`.
-   *
-   * @param {ReactClass} publicInstance The instance that should rerender.
+   * @param {ReactClass} publicInstance 需要渲染的实例
    * @internal
    */
   enqueueForceUpdate: function (publicInstance) {},
 
   /**
-   * Replaces all of the state. Always use this or `setState` to mutate state.
-   * You should treat `this.state` as immutable.
+   * 取代所有的state。 总是使用this或`setState`来改变状态。
+   * 你应该将`this.state`视为不可变的。 
+   * 无法保证`this.state`会立即更新，因此在调用此方法后访问`this.state`可能会返回旧值。
    *
-   * There is no guarantee that `this.state` will be immediately updated, so
-   * accessing `this.state` after calling this method may return the old value.
-   *
-   * @param {ReactClass} publicInstance The instance that should rerender.
+   * @param {ReactClass} publicInstance
    * @param {object} completeState Next state.
    * @internal
    */
   enqueueReplaceState: function (publicInstance, completeState) {},
 
   /**
-   * Sets a subset of the state. This only exists because _pendingState is
-   * internal. This provides a merging strategy that is not available to deep
-   * properties which is confusing. TODO: Expose pendingState or don't use it
-   * during the merge.
+   * 设置状态的子集。 这只是因为_pendingState是内部的。 
+   * 这提供了一种合并策略，该策略无法用于破坏令人困惑的属性。 
+   * TODO：暴露pendingState或在合并期间不使用它。
    *
    * @param {ReactClass} publicInstance The instance that should rerender.
    * @param {object} partialState Next partial state to be merged with state.

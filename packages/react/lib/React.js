@@ -33,10 +33,6 @@ var React = {
  // PropTypes: ReactPropTypes,
   createFactory: createFactory,
 
-  // This looks DOM specific but these are actually isomorphic helpers
-  // since they are just generating DOM strings.
-  //DOM: ReactDOMFactories,
-
 };
 
 module.exports = React;
