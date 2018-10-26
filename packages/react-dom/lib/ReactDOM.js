@@ -1,7 +1,7 @@
 
 'use strict';
 
-var ReactDefaultInjection = require('./shared/ReactDefaultInjection');
+var ReactDefaultInjection = require('./shared/ReactDefaultInjection'); //事件相关
 var ReactMount = require('./ReactMount');
 var ReactUpdates = require('./reconciler/ReactUpdates');
 

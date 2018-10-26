@@ -1,12 +1,12 @@
 'use strict';
 
-var DOMLazyTree = require('./utils/DOMLazyTree');
-var DOMProperty = require('./shared/DOMProperty');
-var React = require('../../react/lib/React');
+var DOMLazyTree = require('./utils/DOMLazyTree'); //dom操作工具
+var DOMProperty = require('./shared/DOMProperty'); //dom标识常量
+var React = require('../../react/lib/React'); //createElement创建节点使用
 var ReactBrowserEventEmitter = require('./ReactBrowserEventEmitter');
 var ReactDOMComponentTree = require('./ReactDOMComponentTree');
 var ReactDOMContainerInfo = require('./shared/ReactDOMContainerInfo');
-var ReactFeatureFlags = require('./utils/ReactFeatureFlags');
+var ReactFeatureFlags = require('./utils/ReactFeatureFlags'); //渲染时间测量
 var ReactInstanceMap = require('./shared/ReactInstanceMap');
 var ReactMarkupChecksum = require('./server/ReactMarkupChecksum');
 var ReactReconciler = require('./reconciler/ReactReconciler');
