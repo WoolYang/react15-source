@@ -1,6 +1,6 @@
 import React from 'React';
 import ReactDOM from 'ReactDOM';
-
+import Childtest from './childtest'
 class Test extends React.Component {
     constructor() {
         super();
@@ -19,11 +19,12 @@ class Test extends React.Component {
         return (
             <div className='test' style={{ background: this.state.color, height: '100px', width: '100px' }}>
                 Hello World!
-                 <div>
+                    <Childtest>{names}</Childtest>
+{/*                  <div>
                     {
                         names.map(item => <div key={item} >{item}</div>)
                     }
-                </div>
+                </div> */}
             </div>
         )
     }

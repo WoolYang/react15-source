@@ -7,13 +7,14 @@ var traverseAllChildren = require('./utils/traverseAllChildren');
 var twoArgumentPooler = PooledClass.twoArgumentPooler;
 var fourArgumentPooler = PooledClass.fourArgumentPooler;
 
-var userProvidedKeyEscapeRegex = /\/+/g;
 function escapeUserProvidedKey(text) {
+  const userProvidedKeyEscapeRegex = /\/+/g;
   return ('' + text).replace(userProvidedKeyEscapeRegex, '$&/');
 }
 
 var emptyFunction = function emptyFunction() {};
-  emptyFunction.thatReturnsArgument = function (arg) {
+
+emptyFunction.thatReturnsArgument = function (arg) {
   return arg;
 };
 
@@ -42,27 +43,6 @@ function forEachSingleChild(bookKeeping, child, name) {
       context = bookKeeping.context;
 
   func.call(context, child, bookKeeping.count++);
-}
-
-/**
- * Iterates through children that are typically specified as `props.children`.
- *
- * See https://facebook.github.io/react/docs/top-level-api.html#react.children.foreach
- *
- * The provided forEachFunc(child, index) will be called for each
- * leaf child.
- *
- * @param {?*} children Children tree container.
- * @param {function(*, int)} forEachFunc
- * @param {*} forEachContext Context for forEachContext.
- */
-function forEachChildren(children, forEachFunc, forEachContext) {
-  if (children == null) {
-    return children;
-  }
-  var traverseContext = ForEachBookKeeping.getPooled(forEachFunc, forEachContext);
-  traverseAllChildren(children, forEachSingleChild, traverseContext);
-  ForEachBookKeeping.release(traverseContext);
 }
 
 /**
@@ -111,6 +91,7 @@ function mapSingleChildIntoContext(bookKeeping, child, childKey) {
   }
 }
 
+//如果有prefix，转义前缀
 function mapIntoWithKeyPrefixInternal(children, array, prefix, func, context) {
   var escapedPrefix = '';
   if (prefix != null) {
@@ -122,17 +103,28 @@ function mapIntoWithKeyPrefixInternal(children, array, prefix, func, context) {
 }
 
 /**
- * Maps children that are typically specified as `props.children`.
+ * foreach
  *
- * See https://facebook.github.io/react/docs/top-level-api.html#react.children.map
+ * @param {?*} children 
+ * @param {function(*, int)} forEachFunc
+ * @param {*} forEachContext
+ */
+function forEachChildren(children, forEachFunc, forEachContext) {
+  if (children == null) {
+    return children;
+  }
+  var traverseContext = ForEachBookKeeping.getPooled(forEachFunc, forEachContext);
+  traverseAllChildren(children, forEachSingleChild, traverseContext);
+  ForEachBookKeeping.release(traverseContext);
+}
+
+/**
+ * mapFunction(child, key, index) 调用子节点
  *
- * The provided mapFunction(child, key, index) will be called for each
- * leaf child.
- *
- * @param {?*} children Children tree container.
- * @param {function(*, int)} func The map function.
- * @param {*} context Context for mapFunction.
- * @return {object} Object containing the ordered map of results.
+ * @param {?*} children children
+ * @param {function(*, int)} func map 函数
+ * @param {*} context context API
+ * @return {object} 结构
  */
 function mapChildren(children, func, context) {
   if (children == null) {
@@ -143,21 +135,16 @@ function mapChildren(children, func, context) {
   return result;
 }
 
-function forEachSingleChildDummy(traverseContext, child, name) {
-  return null;
-}
-
 /**
- * Count the number of children that are typically specified as
- * `props.children`.
- *
- * See https://facebook.github.io/react/docs/top-level-api.html#react.children.count
- *
- * @param {?*} children Children tree container.
- * @return {number} The number of children.
+ * @param {?*} children
+ * @return {number} 
  */
 function countChildren(children, context) {
   return traverseAllChildren(children, forEachSingleChildDummy, null);
+}
+
+function forEachSingleChildDummy(traverseContext, child, name) {
+  return null;
 }
 
 /**
@@ -179,9 +166,9 @@ function onlyChild(children) {
 var ReactChildren = {
   forEach: forEachChildren,
   map: mapChildren,
-  only: onlyChild,
   count: countChildren,
-  toArray: toArray
+  toArray: toArray,
+  only: onlyChild
 };
 
 module.exports = ReactChildren;
