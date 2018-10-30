@@ -1,20 +1,10 @@
 'use strict';
 
-/* global Symbol */
-
 var ITERATOR_SYMBOL = typeof Symbol === 'function' && Symbol.iterator;
-var FAUX_ITERATOR_SYMBOL = '@@iterator'; // Before Symbol spec.
+var FAUX_ITERATOR_SYMBOL = '@@iterator';
 
 /**
- * Returns the iterator method function contained on the iterable object.
- *
- * Be sure to invoke the function with the iterable as context:
- *
- *     var iteratorFn = getIteratorFn(myIterable);
- *     if (iteratorFn) {
- *       var iterator = iteratorFn.call(myIterable);
- *       ...
- *     }
+ * 返回包含在iterable对象上的迭代器方法函数。确保使用iterable作为上下文调用该函数：
  *
  * @param {?object} maybeIterable
  * @return {?function}

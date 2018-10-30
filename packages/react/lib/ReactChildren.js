@@ -19,23 +19,24 @@ emptyFunction.thatReturnsArgument = function (arg) {
 };
 
 /**
- * PooledClass representing the bookkeeping associated with performing a child
- * traversal. Allows avoiding binding callbacks.
+ * PooledClass表示与执行子迁移相关的簿记。 允许避免绑定回调。
  *
  * @constructor ForEachBookKeeping
- * @param {!function} forEachFunction Function to perform traversal with.
- * @param {?*} forEachContext Context to perform context with.
+ * @param {!function} forEachFunction
+ * @param {?*} forEachContext
  */
 function ForEachBookKeeping(forEachFunction, forEachContext) {
   this.func = forEachFunction;
   this.context = forEachContext;
   this.count = 0;
 }
+//销毁队列
 ForEachBookKeeping.prototype.destructor = function () {
   this.func = null;
   this.context = null;
   this.count = 0;
 };
+
 PooledClass.addPoolingTo(ForEachBookKeeping, twoArgumentPooler);
 
 function forEachSingleChild(bookKeeping, child, name) {
@@ -61,6 +62,7 @@ function MapBookKeeping(mapResult, keyPrefix, mapFunction, mapContext) {
   this.context = mapContext;
   this.count = 0;
 }
+
 MapBookKeeping.prototype.destructor = function () {
   this.result = null;
   this.keyPrefix = null;
@@ -69,6 +71,17 @@ MapBookKeeping.prototype.destructor = function () {
   this.count = 0;
 };
 PooledClass.addPoolingTo(MapBookKeeping, fourArgumentPooler);
+
+//如果有prefix，转义前缀
+function mapIntoWithKeyPrefixInternal(children, array, prefix, func, context) {
+  var escapedPrefix = '';
+  if (prefix != null) {
+    escapedPrefix = escapeUserProvidedKey(prefix) + '/';
+  }
+  var traverseContext = MapBookKeeping.getPooled(array, escapedPrefix, func, context);
+  traverseAllChildren(children, mapSingleChildIntoContext, traverseContext);
+  MapBookKeeping.release(traverseContext);
+}
 
 function mapSingleChildIntoContext(bookKeeping, child, childKey) {
   var result = bookKeeping.result,
@@ -83,23 +96,10 @@ function mapSingleChildIntoContext(bookKeeping, child, childKey) {
   } else if (mappedChild != null) {
     if (ReactElement.isValidElement(mappedChild)) {
       mappedChild = ReactElement.cloneAndReplaceKey(mappedChild,
-      // Keep both the (mapped) and old keys if they differ, just as
-      // traverseAllChildren used to do for objects as children
       keyPrefix + (mappedChild.key && (!child || child.key !== mappedChild.key) ? escapeUserProvidedKey(mappedChild.key) + '/' : '') + childKey);
     }
     result.push(mappedChild);
   }
-}
-
-//如果有prefix，转义前缀
-function mapIntoWithKeyPrefixInternal(children, array, prefix, func, context) {
-  var escapedPrefix = '';
-  if (prefix != null) {
-    escapedPrefix = escapeUserProvidedKey(prefix) + '/';
-  }
-  var traverseContext = MapBookKeeping.getPooled(array, escapedPrefix, func, context);
-  traverseAllChildren(children, mapSingleChildIntoContext, traverseContext);
-  MapBookKeeping.release(traverseContext);
 }
 
 /**
@@ -150,8 +150,6 @@ function forEachSingleChildDummy(traverseContext, child, name) {
 /**
  * Flatten a children object (typically specified as `props.children`) and
  * return an array with appropriately re-keyed children.
- *
- * See https://facebook.github.io/react/docs/top-level-api.html#react.children.toarray
  */
 function toArray(children) {
   var result = [];

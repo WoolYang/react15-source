@@ -9,34 +9,18 @@ var SEPARATOR = '.';
 var SUBSEPARATOR = ':';
 
 /**
- * This is inlined from ReactElement since this file is shared between
- * isomorphic and renderers. We could extract this to a
+ * 生成标识集合中组件的键字符串。
  *
- */
-
-/**
- * TODO: Test that a single child and an array with one item have the same key
- * pattern.
- */
-
-//var didWarnAboutMaps = false;
-
-/**
- * Generate a key string that identifies a component within a set.
- *
- * @param {*} component A component that could contain a manual key.
- * @param {number} index Index that is used if a manual key is not provided.
+ * @param {*} component 可以包含手动密钥的组件
+ * @param {number} index 未提供手动密钥时使用的索引。
  * @return {string}
  */
 function getComponentKey(component, index) {
-  // Do some typechecking here since we call this blindly. We want to ensure
-  // that we don't block potential future ES APIs.
+  //粗略类型检测，不影响未来可能ES API
   if (component && typeof component === 'object' && component.key != null) {
-    // Explicit key
     return KeyEscapeUtils.escape(component.key);
   }
-  // Implicit key determined by the index in the set
-  return index.toString(36);
+  return index.toString(36); //由集合中的索引确定的隐式键 36:0-9A-Z
 }
 
 /**
@@ -51,24 +35,17 @@ function traverseAllChildrenImpl(children, nameSoFar, callback, traverseContext)
   var type = typeof children;
 
   if (type === 'undefined' || type === 'boolean') {
-    // All of the above are perceived as null.
     children = null;
   }
 
-  if (children === null || type === 'string' || type === 'number' ||
-  // The following is inlined from ReactElement. This means we can optimize
-  // some checks. React Fiber also inlines this logic for similar purposes.
-  type === 'object' && children.$$typeof === REACT_ELEMENT_TYPE) {
-    callback(traverseContext, children,
-    // If it's the only child, treat the name as if it was wrapped in an array
-    // so that it's consistent if the number of children grows.
-    nameSoFar === '' ? SEPARATOR + getComponentKey(children, 0) : nameSoFar);
+  if (children === null || type === 'string' || type === 'number' || type === 'object' && children.$$typeof === REACT_ELEMENT_TYPE) {
+    callback(traverseContext, children, nameSoFar === '' ? SEPARATOR + getComponentKey(children, 0) : nameSoFar);
     return 1;
   }
 
   var child;
   var nextName;
-  var subtreeCount = 0; // Count of children found in the current subtree.
+  var subtreeCount = 0; // 在当前子树中找到的子项数
   var nextNamePrefix = nameSoFar === '' ? SEPARATOR : nameSoFar + SUBSEPARATOR;
 
   if (Array.isArray(children)) {
@@ -78,7 +55,8 @@ function traverseAllChildrenImpl(children, nameSoFar, callback, traverseContext)
       subtreeCount += traverseAllChildrenImpl(child, nextName, callback, traverseContext);
     }
   } else {
-    var iteratorFn = getIteratorFn(children);
+    //该对象是否可用迭代器，若不可用，则忽略
+    var iteratorFn = getIteratorFn(children); 
     if (iteratorFn) {
       var iterator = iteratorFn.call(children);
       var step;
@@ -90,7 +68,6 @@ function traverseAllChildrenImpl(children, nameSoFar, callback, traverseContext)
           subtreeCount += traverseAllChildrenImpl(child, nextName, callback, traverseContext);
         }
       } else {
-        // Iterator will provide entry [k,v] tuples rather than values.
         while (!(step = iterator.next()).done) {
           var entry = step.value;
           if (entry) {
@@ -107,15 +84,10 @@ function traverseAllChildrenImpl(children, nameSoFar, callback, traverseContext)
 }
 
 /**
- * Traverses children that are typically specified as `props.children`, but
- * might also be specified through attributes:
- *
- * - `traverseAllChildren(this.props.children, ...)`
- * - `traverseAllChildren(this.props.leftPanelChildren, ...)`
- *
- * The `traverseContext` is an optional argument that is passed through the
- * entire traversal. It can be used to store accumulations or anything else that
- * the callback might find relevant.
+ *遍历通常指定为`props.children`的子项，但也可以通过属性指定： 
+ *-`traverseAllChildren（this.props.children，...）` - `traverseAllChildren（this.props.leftPanelChildren，... ）`
+ *`traverseContext`是一个可选的参数，它通过整个遍历传递。
+ *它可用于存储累积或回调可能相关的任何其他内容。
  *
  * @param {?*} children Children tree object.
  * @param {!function} callback To invoke upon traversing each child.
