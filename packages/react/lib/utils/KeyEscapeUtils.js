@@ -1,7 +1,7 @@
 'use strict';
 
 /**
- * Escape and wrap key so it is safe to use as a reactid
+ * 转义并换行密钥，以便可以安全地用作reactid
  *
  * @param {string} key to be escaped.
  * @return {string} the escaped key.
@@ -21,7 +21,7 @@ function escape(key) {
 }
 
 /**
- * Unescape and unwrap key for human-readable display
+ * 用于人类可读显示的Unescape和unwrap键
  *
  * @param {string} key to unescape.
  * @return {string} the unescaped key.

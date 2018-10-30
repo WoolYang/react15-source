@@ -6,7 +6,7 @@ var ReactComponentEnvironment = require('./ReactComponentEnvironment');
 var ReactReconciler = require('./ReactReconciler');
 var ReactChildReconciler = require('./ReactChildReconciler');
 
-var flattenChildren = require('../../../react/lib/flattenChildren');
+var flattenChildren = require('../../../react/lib/utils/flattenChildren');
 
 /**
  * Make an update for markup to be rendered and inserted at a supplied index.

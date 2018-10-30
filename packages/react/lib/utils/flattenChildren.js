@@ -1,6 +1,6 @@
 'use strict';
 
-var traverseAllChildren = require('./utils/traverseAllChildren');
+var traverseAllChildren = require('./traverseAllChildren');
 
 /**
  * @param {function} traverseContext Context passed through traversal.
@@ -21,9 +21,8 @@ function flattenSingleChildIntoContext(traverseContext, child, name) {
 }
 
 /**
- * Flattens children that are typically specified as `props.children`. Any null
- * children will not be included in the resulting object.
- * @return {!object} flattened children keyed by name.
+ * 扁平化通常指定为“props.children”的children+。 任何null子项都不会包含在结果对象中。
+ * @return {!object}
  */
 function flattenChildren(children) {
   if (children == null) {
