@@ -1,6 +1,6 @@
 'use strict';
 
-var REACT_ELEMENT_TYPE = require('./ReactElementSymbol');
+var REACT_ELEMENT_TYPE = require('./utils/ReactElementSymbol');
 
 var hasOwnProperty = Object.prototype.hasOwnProperty;
 

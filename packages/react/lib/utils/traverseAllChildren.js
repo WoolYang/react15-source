@@ -1,6 +1,6 @@
 'use strict';
 
-var REACT_ELEMENT_TYPE = require('../ReactElementSymbol');
+var REACT_ELEMENT_TYPE = require('./ReactElementSymbol');
 
 var getIteratorFn = require('./getIteratorFn');
 var KeyEscapeUtils = require('./KeyEscapeUtils');

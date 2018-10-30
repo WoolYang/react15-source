@@ -15,76 +15,40 @@
   在每一个中，`this`指的是Class本身，而不是实例。 
   如果需要其他任何其他内容，只需在此处或在自己的文件中添加。
  */
-var oneArgumentPooler = function (copyFieldsFrom) {
-  var Klass = this;
+
+// 默认值
+const DEFAULT_POOL_SIZE = 10;
+const DEFAULT_POOLER = argumentPooler;
+
+//任意参数
+const argumentPooler = function (...args) {
+  const Klass = this;
   if (Klass.instancePool.length) {
-    var instance = Klass.instancePool.pop();
-    Klass.call(instance, copyFieldsFrom);
+    var instance = Klass.instancePool.pop(); //从对象池取出一个实例
+    Klass.call(instance, ...args); //将参数赋给实例
     return instance;
   } else {
-    return new Klass(copyFieldsFrom);
+    return new Klass(...args); 
   }
 };
 
-var twoArgumentPooler = function (a1, a2) {
-  var Klass = this;
-  if (Klass.instancePool.length) {
-    var instance = Klass.instancePool.pop();
-    Klass.call(instance, a1, a2);
-    return instance;
-  } else {
-    return new Klass(a1, a2);
-  }
-};
-
-var threeArgumentPooler = function (a1, a2, a3) {
-  var Klass = this;
-  if (Klass.instancePool.length) {
-    var instance = Klass.instancePool.pop();
-    Klass.call(instance, a1, a2, a3);
-    return instance;
-  } else {
-    return new Klass(a1, a2, a3);
-  }
-};
-
-var fourArgumentPooler = function (a1, a2, a3, a4) {
-  var Klass = this;
-  if (Klass.instancePool.length) {
-    var instance = Klass.instancePool.pop();
-    Klass.call(instance, a1, a2, a3, a4);
-    return instance;
-  } else {
-    return new Klass(a1, a2, a3, a4);
-  }
-};
-
-var standardReleaser = function (instance) {
-  var Klass = this;
+//释放资源
+const standardReleaser = function (instance) {
+  const Klass = this;
   instance.destructor();
   if (Klass.instancePool.length < Klass.poolSize) {
     Klass.instancePool.push(instance);
   }
 };
 
-var DEFAULT_POOL_SIZE = 10;
-var DEFAULT_POOLER = oneArgumentPooler;
-
 /**
- * Augments `CopyConstructor` to be a poolable class, augmenting only the class
- * itself (statically) not adding any prototypical fields. Any CopyConstructor
- * you give this may have a `poolSize` property, and will look for a
- * prototypical `destructor` on instances.
- *
  * @param {Function} CopyConstructor Constructor that can be used to reset.
  * @param {Function} pooler Customizable pooler.
  */
-var addPoolingTo = function (CopyConstructor, pooler) {
-  // Casting as any so that flow ignores the actual implementation and trusts
-  // it to match the type we declared
-  var NewKlass = CopyConstructor;
-  NewKlass.instancePool = [];
-  NewKlass.getPooled = pooler || DEFAULT_POOLER;
+const addPoolingTo = function (CopyConstructor) {
+  const NewKlass = CopyConstructor;
+  NewKlass.instancePool = []; //对象池
+  NewKlass.getPooled = DEFAULT_POOLER;
   if (!NewKlass.poolSize) {
     NewKlass.poolSize = DEFAULT_POOL_SIZE;
   }
@@ -92,12 +56,8 @@ var addPoolingTo = function (CopyConstructor, pooler) {
   return NewKlass;
 };
 
-var PooledClass = {
-  addPoolingTo: addPoolingTo,
-  oneArgumentPooler: oneArgumentPooler,
-  twoArgumentPooler: twoArgumentPooler,
-  threeArgumentPooler: threeArgumentPooler,
-  fourArgumentPooler: fourArgumentPooler
+const PooledClass = {
+  addPoolingTo: addPoolingTo
 };
 
 module.exports = PooledClass;

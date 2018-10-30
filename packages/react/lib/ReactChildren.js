@@ -4,40 +4,10 @@ var ReactElement = require('./ReactElement');
 var PooledClass = require('./utils/PooledClass');
 var traverseAllChildren = require('./utils/traverseAllChildren');
 
-var twoArgumentPooler = PooledClass.twoArgumentPooler;
-var fourArgumentPooler = PooledClass.fourArgumentPooler;
-
 function escapeUserProvidedKey(text) {
   const userProvidedKeyEscapeRegex = /\/+/g;
   return ('' + text).replace(userProvidedKeyEscapeRegex, '$&/');
 }
-
-var emptyFunction = function emptyFunction() {};
-
-emptyFunction.thatReturnsArgument = function (arg) {
-  return arg;
-};
-
-/**
- * PooledClass表示与执行子迁移相关的簿记。 允许避免绑定回调。
- *
- * @constructor ForEachBookKeeping
- * @param {!function} forEachFunction
- * @param {?*} forEachContext
- */
-function ForEachBookKeeping(forEachFunction, forEachContext) {
-  this.func = forEachFunction;
-  this.context = forEachContext;
-  this.count = 0;
-}
-//销毁队列
-ForEachBookKeeping.prototype.destructor = function () {
-  this.func = null;
-  this.context = null;
-  this.count = 0;
-};
-
-PooledClass.addPoolingTo(ForEachBookKeeping, twoArgumentPooler);
 
 function forEachSingleChild(bookKeeping, child, name) {
   var func = bookKeeping.func,
@@ -47,13 +17,12 @@ function forEachSingleChild(bookKeeping, child, name) {
 }
 
 /**
- * PooledClass representing the bookkeeping associated with performing a child
- * mapping. Allows avoiding binding callbacks.
+ * PooledClass表示与执行子迁移相关的簿记。 允许避免绑定回调。
  *
  * @constructor MapBookKeeping
- * @param {!*} mapResult Object containing the ordered map of results.
- * @param {!function} mapFunction Function to perform mapping with.
- * @param {?*} mapContext Context to perform mapping with.
+ * @param {!*} mapResult
+ * @param {!function} mapFunction
+ * @param {?*} mapContext
  */
 function MapBookKeeping(mapResult, keyPrefix, mapFunction, mapContext) {
   this.result = mapResult;
@@ -70,7 +39,7 @@ MapBookKeeping.prototype.destructor = function () {
   this.context = null;
   this.count = 0;
 };
-PooledClass.addPoolingTo(MapBookKeeping, fourArgumentPooler);
+PooledClass.addPoolingTo(MapBookKeeping);
 
 //如果有prefix，转义前缀
 function mapIntoWithKeyPrefixInternal(children, array, prefix, func, context) {
@@ -92,7 +61,7 @@ function mapSingleChildIntoContext(bookKeeping, child, childKey) {
 
   var mappedChild = func.call(context, child, bookKeeping.count++);
   if (Array.isArray(mappedChild)) {
-    mapIntoWithKeyPrefixInternal(mappedChild, result, childKey, emptyFunction.thatReturnsArgument);
+    mapIntoWithKeyPrefixInternal(mappedChild, result, childKey, arg=>arg);
   } else if (mappedChild != null) {
     if (ReactElement.isValidElement(mappedChild)) {
       mappedChild = ReactElement.cloneAndReplaceKey(mappedChild,
@@ -113,9 +82,9 @@ function forEachChildren(children, forEachFunc, forEachContext) {
   if (children == null) {
     return children;
   }
-  var traverseContext = ForEachBookKeeping.getPooled(forEachFunc, forEachContext);
+  var traverseContext = MapBookKeeping.getPooled(forEachFunc,null, null, forEachContext);
   traverseAllChildren(children, forEachSingleChild, traverseContext);
-  ForEachBookKeeping.release(traverseContext);
+  MapBookKeeping.release(traverseContext);
 }
 
 /**
@@ -139,12 +108,8 @@ function mapChildren(children, func, context) {
  * @param {?*} children
  * @return {number} 
  */
-function countChildren(children, context) {
-  return traverseAllChildren(children, forEachSingleChildDummy, null);
-}
-
-function forEachSingleChildDummy(traverseContext, child, name) {
-  return null;
+function countChildren(children) {
+  return traverseAllChildren(children, ()=> null, null);
 }
 
 /**
@@ -153,7 +118,7 @@ function forEachSingleChildDummy(traverseContext, child, name) {
  */
 function toArray(children) {
   var result = [];
-  mapIntoWithKeyPrefixInternal(children, result, null, emptyFunction.thatReturnsArgument);
+  mapIntoWithKeyPrefixInternal(children, result, null, arg => arg);
   return result;
 }
 
