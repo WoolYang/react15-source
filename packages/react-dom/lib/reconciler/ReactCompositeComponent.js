@@ -6,9 +6,7 @@ var ReactInstanceMap = require('../shared/ReactInstanceMap');
 var ReactNodeTypes = require('./ReactNodeTypes');
 var ReactReconciler = require('./ReactReconciler');
 
-var emptyObject = require('fbjs/lib/emptyObject');
-//var invariant = require('fbjs/lib/invariant');
-var shallowEqual = require('fbjs/lib/shallowEqual');
+var shallowEqual = require('../utils/shallowEqual');
 var shouldUpdateReactComponent = require('../shouldUpdateReactComponent');
 
 var CompositeTypes = {
@@ -159,7 +157,7 @@ var ReactCompositeComponent = {
     // simpler class abstractions, we set them up after the fact.
     inst.props = publicProps;
     inst.context = publicContext;
-    inst.refs = emptyObject;
+    inst.refs = {};
     inst.updater = updateQueue;
 
     this._instance = inst;
@@ -341,7 +339,7 @@ var ReactCompositeComponent = {
     var Component = this._currentElement.type;
     var contextTypes = Component.contextTypes;
     if (!contextTypes) {
-      return emptyObject;
+      return {};
     }
     var maskedContext = {};
     for (var contextName in contextTypes) {
@@ -639,7 +637,7 @@ var ReactCompositeComponent = {
     var inst = this.getPublicInstance();
     var publicComponentInstance = component.getPublicInstance();
 
-    var refs = inst.refs === emptyObject ? inst.refs = {} : inst.refs;
+    var refs = inst.refs === {} ? inst.refs = {} : inst.refs;
     refs[ref] = publicComponentInstance;
   },
 

@@ -4,7 +4,7 @@
 var DOMLazyTree = require('../utils/DOMLazyTree');
 
 var createNodesFromMarkup = require('fbjs/lib/createNodesFromMarkup');
-var emptyFunction = require('fbjs/lib/emptyFunction');
+//var emptyFunction = require('fbjs/lib/emptyFunction');
 
 var Danger = {
   /**
@@ -18,7 +18,7 @@ var Danger = {
   dangerouslyReplaceNodeWithMarkup: function (oldChild, markup) {
 
     if (typeof markup === 'string') {
-      var newChild = createNodesFromMarkup(markup, emptyFunction)[0];
+      var newChild = createNodesFromMarkup(markup, function emptyFunction(){})[0];
       oldChild.parentNode.replaceChild(newChild, oldChild);
     } else {
       DOMLazyTree.replaceChildWithTree(oldChild, markup);

@@ -16,10 +16,6 @@
   如果需要其他任何其他内容，只需在此处或在自己的文件中添加。
  */
 
-// 默认值
-const DEFAULT_POOL_SIZE = 10;
-const DEFAULT_POOLER = argumentPooler;
-
 //任意参数
 const argumentPooler = function (...args) {
   const Klass = this;
@@ -41,13 +37,17 @@ const standardReleaser = function (instance) {
   }
 };
 
+// 默认值
+const DEFAULT_POOL_SIZE = 10;
+const DEFAULT_POOLER = argumentPooler;
+
 /**
  * @param {Function} CopyConstructor Constructor that can be used to reset.
  * @param {Function} pooler Customizable pooler.
  */
 const addPoolingTo = function (CopyConstructor) {
   const NewKlass = CopyConstructor;
-  NewKlass.instancePool = []; //对象池
+  NewKlass.instancePool = [];
   NewKlass.getPooled = DEFAULT_POOLER;
   if (!NewKlass.poolSize) {
     NewKlass.poolSize = DEFAULT_POOL_SIZE;

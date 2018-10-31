@@ -8,9 +8,7 @@
 
 'use strict';
 
-var _assign = require('object-assign');
-
-var EventListener = require('fbjs/lib/EventListener');
+var EventListener = require('./eventPlugins/EventListener');
 var ExecutionEnvironment = require('./utils/ExecutionEnvironment');
 var PooledClass = require('./utils/PooledClass');
 var ReactDOMComponentTree = require('./ReactDOMComponentTree');
@@ -42,7 +40,7 @@ function TopLevelCallbackBookKeeping(topLevelType, nativeEvent) {
   this.nativeEvent = nativeEvent;
   this.ancestors = [];
 }
-_assign(TopLevelCallbackBookKeeping.prototype, {
+Object.assign(TopLevelCallbackBookKeeping.prototype, {
   destructor: function () {
     this.topLevelType = null;
     this.nativeEvent = null;

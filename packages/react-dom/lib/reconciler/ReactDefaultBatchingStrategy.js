@@ -3,17 +3,15 @@
 var ReactUpdates = require('./ReactUpdates');
 var Transaction = require('../Transaction');
 
-var emptyFunction = require('fbjs/lib/emptyFunction');
-
 var RESET_BATCHED_UPDATES = {
-  initialize: emptyFunction,
+  initialize: function emptyFunction() {},
   close: function () {
     ReactDefaultBatchingStrategy.isBatchingUpdates = false;
   }
 };
 
 var FLUSH_BATCHED_UPDATES = {
-  initialize: emptyFunction,
+  initialize: function emptyFunction() {},
   close: ReactUpdates.flushBatchedUpdates.bind(ReactUpdates)
 };
 

@@ -1,6 +1,6 @@
 'use strict';
 
-var EventListener = require('fbjs/lib/EventListener');
+var EventListener = require('./EventListener');
 var EventPropagators = require('../event/EventPropagators');
 var ReactDOMComponentTree = require('../ReactDOMComponentTree');
 var SyntheticAnimationEvent = require('../syntheticEvents/SyntheticAnimationEvent');
@@ -14,8 +14,6 @@ var SyntheticTouchEvent = require('../syntheticEvents/SyntheticTouchEvent');
 var SyntheticTransitionEvent = require('../syntheticEvents/SyntheticTransitionEvent');
 var SyntheticUIEvent = require('../syntheticEvents/SyntheticUIEvent');
 var SyntheticWheelEvent = require('../syntheticEvents/SyntheticWheelEvent');
-
-var emptyFunction = require('fbjs/lib/emptyFunction');
 var getEventCharCode = require('../utils/getEventCharCode');
 
 /**
@@ -193,7 +191,7 @@ var SimpleEventPlugin = {
       var key = getDictionaryKey(inst);
       var node = ReactDOMComponentTree.getNodeFromInstance(inst);
       if (!onClickListeners[key]) {
-        onClickListeners[key] = EventListener.listen(node, 'click', emptyFunction);
+        onClickListeners[key] = EventListener.listen(node, 'click', function emptyFunction() {});
       }
     }
   },

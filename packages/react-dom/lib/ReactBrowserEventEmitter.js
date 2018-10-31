@@ -1,7 +1,5 @@
 'use strict';
 
-var _assign = require('object-assign');
-
 var EventPluginRegistry = require('./event/EventPluginRegistry');
 var ReactEventEmitterMixin = require('./reconciler/ReactEventEmitterMixin');
 var ViewportMetrics = require('./utils/ViewportMetrics');
@@ -164,7 +162,7 @@ function getListeningForDocument(mountAt) {
  *
  * @internal
  */
-var ReactBrowserEventEmitter = _assign({}, ReactEventEmitterMixin, {
+var ReactBrowserEventEmitter = Object.assign({}, ReactEventEmitterMixin, {
   /**
    * Injectable event backend
    */

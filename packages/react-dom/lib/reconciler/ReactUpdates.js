@@ -14,7 +14,7 @@ var ReactFeatureFlags = require('../utils/ReactFeatureFlags');
 var ReactReconciler = require('./ReactReconciler');
 var Transaction = require('../Transaction');
 
-var invariant = require('fbjs/lib/invariant');
+//var invariant = require('fbjs/lib/invariant');
 
 var dirtyComponents = [];
 var updateBatchNumber = 0;
@@ -200,7 +200,7 @@ function enqueueUpdate(component) {
  * if no updates are currently being performed.
  */
 function asap(callback, context) {
-  invariant(batchingStrategy.isBatchingUpdates, "ReactUpdates.asap: Can't enqueue an asap callback in a context where" + 'updates are not being batched.');
+  //invariant(batchingStrategy.isBatchingUpdates, "ReactUpdates.asap: Can't enqueue an asap callback in a context where" + 'updates are not being batched.');
   asapCallbackQueue.enqueue(callback, context);
   asapEnqueued = true;
 }
