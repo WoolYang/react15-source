@@ -2,7 +2,18 @@
 
 var ReactDOMSelection = require('./ReactDOMSelection');
 
-var getActiveElement = require('fbjs/lib/getActiveElement');
+function getActiveElement(doc) /*?DOMElement*/{
+  doc = doc || (typeof document !== 'undefined' ? document : undefined);
+  if (typeof doc === 'undefined') {
+    return null;
+  }
+  try {
+    return doc.activeElement || doc.body;
+  } catch (e) {
+    return doc.body;
+  }
+}
+
 
 function isTextNode(object) {
   return isNode(object) && object.nodeType == 3;

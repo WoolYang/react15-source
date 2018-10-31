@@ -15,7 +15,20 @@ var ReactDOMComponentTree = require('./ReactDOMComponentTree');
 var ReactUpdates = require('./reconciler/ReactUpdates');
 
 var getEventTarget = require('./utils/getEventTarget');
-var getUnboundedScrollPosition = require('fbjs/lib/getUnboundedScrollPosition');
+
+
+function getUnboundedScrollPosition(scrollable) {
+  if (scrollable.Window && scrollable instanceof scrollable.Window) {
+    return {
+      x: scrollable.pageXOffset || scrollable.document.documentElement.scrollLeft,
+      y: scrollable.pageYOffset || scrollable.document.documentElement.scrollTop
+    };
+  }
+  return {
+    x: scrollable.scrollLeft,
+    y: scrollable.scrollTop
+  };
+}
 
 /**
  * Find the deepest React component completely containing the root of the

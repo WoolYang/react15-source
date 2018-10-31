@@ -3,8 +3,7 @@
 
 var DOMLazyTree = require('../utils/DOMLazyTree');
 
-var createNodesFromMarkup = require('fbjs/lib/createNodesFromMarkup');
-//var emptyFunction = require('fbjs/lib/emptyFunction');
+var createNodesFromMarkup = require('../utils//createNodesFromMarkup');
 
 var Danger = {
   /**

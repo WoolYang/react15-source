@@ -5,8 +5,19 @@ var CSSProperty = require('./CSSProperty');
 var ExecutionEnvironment = require('../utils/ExecutionEnvironment');
 
 var dangerousStyleValue = require('./dangerousStyleValue');
-var hyphenateStyleName = require('fbjs/lib/hyphenateStyleName');
-var memoizeStringOnly = require('fbjs/lib/memoizeStringOnly');
+var hyphenateStyleName = require('../utils/hyphenateStyleName');
+
+function memoizeStringOnly(callback) {
+  var cache = {};
+  return function (string) {
+    if (!cache.hasOwnProperty(string)) {
+      cache[string] = callback.call(this, string);
+    }
+    return cache[string];
+  };
+}
+
+
 
 var processStyleName = memoizeStringOnly(function (styleName) {
   return hyphenateStyleName(styleName);
